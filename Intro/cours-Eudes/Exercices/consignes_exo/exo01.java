@@ -1,18 +1,15 @@
-
-
-public class exo01 {
-    
-    public static void main(String[] args) {
-        
-        int a = 2;
-        int b = 3;
-
-        System.out.println(" a = 2");
-        System.out.println(" b = 3");
-
-        System.out.println(" resultat = a + b");
-
-        System.out.println(" resultat vaut " +( a + b) );
-
-    }
-}
+/* EXO1 : A l'aide de Scanner et Print, me faire afficher le résultat d'une addition de deux entiers        
+ * 
+ * 
+* **********************AFFICHAGE ATTENDU ****************:
+ * 
+ * a = 2
+ * b = 3
+ * 
+ * resultat = a + b
+ * 
+ * resulat vaut 5
+ * 
+ * 
+ * 
+*/
