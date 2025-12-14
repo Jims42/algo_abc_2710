@@ -76,6 +76,8 @@ public class exo15_cor {
         }
 
         System.out.println("Merci d'avoir utilisé le convertisseur de devises !");
+
+        clavier.close();
 }
 }
 

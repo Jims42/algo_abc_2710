@@ -17,8 +17,9 @@ public class exo12_cor {
         reduc = clavier.nextDouble();
 
         System.out.println("Prix après la réduction : ");
+        ttc=prix-(prix*(reduc/100));
 
-                System.out.println(ttc = prix-(prix*(reduc/100)));          
+                System.out.println("Prix apres réduction : "+ttc+" Euros" );          
 clavier.close();
     }
 

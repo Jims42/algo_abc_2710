@@ -19,12 +19,8 @@ System.out.println("nice to meet you");
 System.out.println("go learn english !");
 
 }else{System.out.println("Mauvais choix");}
-    
-}
-
-
-
-        
+   clavier.close(); 
     }
+ }
     
 
