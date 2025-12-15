@@ -28,7 +28,7 @@ public class exo08_cor {
             System.out.println("Inscription annulé !!!");
                 }
                 else{
-                    System.out.println("Merci "+nom+prenom+", votre inscription a été effectuee, vous allez recevoir un email de confirmation à l'adresse email: "+email);
+                    System.out.println("Merci "+nom+" "+prenom+", votre inscription a été effectuee, vous allez recevoir un email de confirmation à l'adresse email: "+email);
 
                     clavier.close();
                 }
