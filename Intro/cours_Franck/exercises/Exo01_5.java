@@ -14,6 +14,7 @@ public class Exo01_5 {
         b=inv;
 
         System.out.println("la nouvelle valeur de a est \u001B[32m "+a+" \u001B[0m et la nouvelle valeur de b est \u001B[32m "+b+" \u001B[0m");
+        clavier.close();
     }
     
 }

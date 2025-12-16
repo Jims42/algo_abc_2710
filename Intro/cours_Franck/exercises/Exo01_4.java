@@ -13,6 +13,7 @@ public class Exo01_4 {
         System.out.printf("avec interet simple : %.2f  \n",interet);
         double credit=S*Math.pow((1+i),N);
         System.out.printf("avec un interet composé : %.2f \n",credit );
+        clavier.close();
 
 
     }

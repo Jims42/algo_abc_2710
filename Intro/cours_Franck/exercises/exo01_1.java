@@ -1,5 +1,5 @@
 
-package algo_abc_2710.intro.cours_Franck;
+
 import java.util.Scanner;
 
 public class exo01_1 {

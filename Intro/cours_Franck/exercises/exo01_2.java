@@ -13,6 +13,7 @@ public class exo01_2 {
 
         System.out.println("Son aire = "+ 4*pi*(R*R));
         System.out.println("son volume = "+(4/3)*pi*(R*R*R));
+        clavier.close();
 
 
 
