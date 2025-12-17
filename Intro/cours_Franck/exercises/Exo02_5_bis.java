@@ -9,9 +9,13 @@ public class Exo02_5_bis {
 
         System.out.println("Les diviseurs de "+nombre+" (hors 1 et lui même) sont : ");
 
-        for (int i=2; i<nombre; i++){
-            if (nombre % i ==0) {
-                System.out.print(i+" ");}
-        }clavier.close();
+        for (int i=2; i<nombre; i++)
+        {
+            if (nombre % i ==0)
+            {
+                System.out.print(i+" ");
+            }
+        }
+        clavier.close();
     }
 }

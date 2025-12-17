@@ -12,7 +12,7 @@ public class Exo01_3 {
         System.out.print("rayon = ");r=clavier.nextDouble();
         System.out.print("Angle = ");a=clavier.nextDouble();
         double resultat=((pi*(r*r)*a)/360);
-        System.out.printf("L'aire du secteur circulaire = %.2f ",resultat);
+        System.out.printf("L'aire du secteur circulaire = \u001B[4;32m%.2f\u001B[4;0m ",resultat);
         clavier.close();
 
 
