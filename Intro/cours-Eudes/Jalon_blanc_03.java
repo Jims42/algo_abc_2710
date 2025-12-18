@@ -25,6 +25,26 @@ public class Jalon_blanc_03 {
        // }
 
        // scanner.close();
+    boolean question=true;
+
+    System.out.println("Voulez-vous lancer le compte a rebours ?");
+    question=clavier.nextBoolean();
+    int debut=10;
+    int decompte=10;
     
+    
+    
+    while (question) {
+                   
+    
+    if (question=true) {System.out.println("Le compte à rebours va commencer :"+debut);debut=decompte; 
+    }if (question=false) {System.out.println("MERCI\n AU REVOIR!!!");}
+    if (decompte==0) {System.out.println("\u001B[4;36m BONNE ANNEE 2026 !!! \u001B[4;0m");
+    
+    }if (decompte>=0) {System.out.println(+decompte);;-- decompte;}
     }
-}
+      
+    }
+  
+   } 
+

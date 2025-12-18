@@ -16,7 +16,7 @@ public class Exo02_7 {
             try {
                 km = Double.parseDouble(reponse);
             } catch (Exception e) {
-                // TODO: handle exception
+            
                 System.out.println("valeur non numérique");
             }
 
