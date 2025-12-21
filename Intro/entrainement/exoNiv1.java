@@ -1,6 +1,6 @@
 package entrainement;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /* Niveau 1 : A l'aide d'une boucle, PRINT & SCANNER 
 *Créer un système de commande de restauration

@@ -54,7 +54,7 @@ public class exo14 { /* ATTENTION LA CLASSE DOIT AVOIR LE MÊME NOM QUE LE FICHI
           System.out.println("Résultat :" + result); /* Afficher votre instruction */
 
 
-
+clavier.close();
         /***--------  Fin du code  -------------------****/
 
     }

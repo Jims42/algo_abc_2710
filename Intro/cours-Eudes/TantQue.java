@@ -16,7 +16,7 @@ public class TantQue {
 
 
                      System.out.println("Vous avez :"+note+"/20");
-        
+        sc.close();
     }
     
 }

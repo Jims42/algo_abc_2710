@@ -21,6 +21,7 @@ public class Exo01 {
         System.out.println(i);
         
     }
-    }
+  clavier.close();  
+}
     
 }
