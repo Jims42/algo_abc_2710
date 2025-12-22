@@ -13,11 +13,12 @@ public class Exo01 {
     System.out.println(nombres);
 
     int i=0;
-    while (i<10) {
+    while (i<nombre) {
         i++;
         if (i%2==1) {
             continue;
         }
+        //System.out.print(i+" ");
         System.out.println(i);
         
     }
