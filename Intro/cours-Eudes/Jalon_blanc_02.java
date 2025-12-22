@@ -6,10 +6,10 @@ public class Jalon_blanc_02 {
 
         int bouteille=100;
         
-       
+       System.out.printf("Vous avez \u001B[33m %d \u001B[0m cl dans votre bouteille,\n ",bouteille);
         while (bouteille>0){
        
-        System.out.printf("Vous avez \u001B[33m %d \u001B[0m cl dans votre bouteille,\n Combien de centilitre voulez vous boire ? \n",bouteille);
+        System.out.println("Combien de centilitre voulez vous boire ? \n");
         int bu=clavier.nextInt();
 
         if (bu<=bouteille) { bouteille-=bu;
