@@ -16,6 +16,7 @@ public class Exo_03_4_correction {
         do {
             System.out.println(" Veuillez saisir une phrase terminée par un point !");
             chaineString = sc.nextLine().toLowerCase();
+            chaineString=chaineString.trim();
             int depart = chaineString.length() - 1;
             String souString = chaineString.substring(depart);
             if (souString.equals(".")) {
@@ -23,6 +24,10 @@ public class Exo_03_4_correction {
             }
 
         } while (trouvePoint == false);
+        
+        if (chaineString.length()==1) {
+            System.out.println("La chaine est vide");
+        }else{
 
         chaineString = chaineString.replace(" ", "");
         // String newchaineString = chaineString.replace( "à", "a");
@@ -47,7 +52,7 @@ public class Exo_03_4_correction {
             System.out.print(c + " ");
         }
 
-        System.out.print("] ");
+        System.out.print("] \n");
         int position = 0;
 
         for (int i = 0; i < tabphrase.length; i++) {
@@ -77,6 +82,7 @@ public class Exo_03_4_correction {
 
         }
         sc.close();
+    }
     }
 }
  
