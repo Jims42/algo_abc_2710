@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Exo01 {
     public static void main(String[] args) {
+        System.out.print("Entrz un nombre : ");
         Scanner clavier = new Scanner(System.in);
         int nombre = clavier.nextInt();
         System.out.println("nombre : "+nombre);
