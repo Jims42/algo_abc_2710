@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Simulateur_Emprunt {
 
-    public class App {
+    
 
         public static void main(String[] args) throws Exception {
 
@@ -18,9 +18,10 @@ public class Simulateur_Emprunt {
             double tauxmensuel = (sc.nextDouble()) / 1200;
             System.out.println("Veuiller saisir la durée dde remboursement (en années)");
             nbmois = (sc.nextInt()) * 12;
-            double rembmensuel = App.calculMensualite(capital, nbmois, tauxmensuel);
+            double rembmensuel = Simulateur_Emprunt.calculMensualite(capital, nbmois, tauxmensuel);
 
             System.out.printf("Votre mensualité de rembourserment sera de %.2f Euros ", rembmensuel);
+
             sc.close();
         }
 
@@ -53,4 +54,4 @@ public class Simulateur_Emprunt {
 
     }
 
-}
+
