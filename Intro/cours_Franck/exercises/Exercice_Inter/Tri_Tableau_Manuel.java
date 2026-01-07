@@ -1,14 +1,17 @@
 package Exercice_Inter;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Tri_Tableau_Manuel {
     public static void main(String[] args) {
+        Random alea = new Random();
         Scanner clavier = new Scanner(System.in);
         int[] tableau1 = new int[10];
         for (int i = 0; i < tableau1.length; i++) {
-            System.out.print("entrez la valeur " + (i + 1) + " : ");
-            tableau1[i] = clavier.nextInt();
+            // System.out.print("entrez la valeur " + (i + 1) + " : ");
+            // tableau1[i] = clavier.nextInt();
+            tableau1[i] = alea.nextInt(1000);
         }
         System.out.println("\t\t-----------");
         System.out.print("Avant le tri :");
@@ -30,16 +33,17 @@ public class Tri_Tableau_Manuel {
             }
         }
         System.out.println("\t\t-----------");
-        System.out.print("Après le tri : ");
+        System.out.print("Après le tri :");
         AfficherTableau(tableau1);
         clavier.close();
     }
 
     public static void AfficherTableau(int[] tab) {
+        System.out.print("[ ");
         for (int val : tab)
             System.out.print(val + " ");
         {
-            System.out.println();
+            System.out.println("]");
 
         }
 
