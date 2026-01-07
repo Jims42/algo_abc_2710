@@ -34,5 +34,6 @@ public class Tri_Tableau {
             System.out.print(tab2+" ");
         }
         System.out.print("]");
+        clavier.close();
     }
 }
