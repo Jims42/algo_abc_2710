@@ -14,6 +14,7 @@ public class Tri_Tableau {
         }
         System.out.println("\t\t-------------\n");
         Arrays.sort(tableau1);
+        
         System.out.println("<<< LE PREMIER TABLEAU >>>");
         System.out.print("[ ");
         for (int tab1 : tableau1) {
