@@ -1,23 +1,52 @@
 package Exercice_Inter;
 
 import java.util.Scanner;
+import java.io.Console;
 
 public class LePendu {
     public static void main(String[] args) {
-        Scanner clavier = new Scanner(System.in);
-        String mot="";
-        while (mot.length()<= 5) {
-            System.out.println("Entrer un mot de plus de 5 caractère");
-            mot=clavier.nextLine();
+        // Scanner clavier = new Scanner(System.in);
+        Console console=System.console();
+        String mot=" " ;
+        String motCherche="";
+        while (mot.length() <= 5) {
+        //     System.out.println("Entrer un mot de plus de 5 caractère");
+        //     mot = clavier.nextLine().toUpperCase();
+            
+            char[] motSecret=console.readPassword("Entrer un mot de plus de 5 caractère");
+            String mots=new String(motSecret);
+            java.util.Arrays.fill(motSecret, ' ');
+            
+           
 
-            if (mot.length()<=5) {
-             System.out.println("Mot trop court ! recommencer \n ");   
+            System.out.println("Vous avez entré : "+mots);
+             mots= mots.toUpperCase();
+             System.out.println(mots);
+
+            if (mots.length() <= 5) {
+                System.out.println("Mot trop court ! recommencer \n ");
+            }
+        
+        }
+
+        char[] affichage=new char[mot.length()];
+
+        for (int i = 0; i < mot.length(); i++) {
+            if (i==0||i==mot.length()-1) {
+                affichage[i]=mot.charAt(i);
+            }else{
+                affichage[i]='_';
             }
         }
-        mot=mot.toUpperCase();
-        System.out.println(mot);
+// System.out.println(affichage);
+     
+//        for (char c : affichage) {
+//         motCherche+=c+" ";
+//        }
+       
+// System.out.println(motCherche);
+        // clavier.close();
         
-
-        clavier.close();
     }
+
 }
