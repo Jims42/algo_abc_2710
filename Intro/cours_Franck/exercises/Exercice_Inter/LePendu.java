@@ -5,7 +5,7 @@ import java.io.Console;
 
 public class LePendu {
     public static void main(String[] args) {
-        // Scanner clavier = new Scanner(System.in);
+        Scanner clavier = new Scanner(System.in);
         Console console = System.console();
         String mot = " ";
         String motCherche = "";
@@ -40,8 +40,15 @@ public class LePendu {
             motCherche += c + " ";
         }
 
-        System.out.println(motCherche);
-        // clavier.close();
+
+        System.out.println("<<< TROUVER LE MOT SUIVANT >>>\n\t"+motCherche);
+
+        String choixLettre=" ";
+        int nbEssai=6;
+
+        choixLettre =  clavier.nextLine().toUpperCase();
+
+        clavier.close();
 
     }
 
