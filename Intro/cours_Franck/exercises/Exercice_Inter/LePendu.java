@@ -35,18 +35,49 @@ public class LePendu {
             }
         }
         // System.out.println(affichage);
+        String choixLettre = " ";
+        int nbEssai = 6;
+        boolean motTrouve = false;
+        String tabLettreFausse = "";
 
-        for (char c : affichage) {
-            motCherche += c + " ";
+        while (nbEssai > 0 && !motTrouve) {
+            motCherche = "";
+            for (char c : affichage) {
+                motCherche += c + " ";
+            }
+
+            System.out.println("<<< TROUVER LE MOT SUIVANT >>>\n\t" + new String(motCherche) + "\n");
+
+            System.out.print("<<< NOMBRE DE TENTATIVE(S) RESTANTE >>>\n\t\t \u001B[4;33m" + nbEssai + "\u001B[4;0m \n");
+            System.out.print("<<< ENTRER UNE LETTRE >>> \n\t");
+            choixLettre = clavier.nextLine().toUpperCase();
+
+            if (choixLettre.length() != 1) {
+                System.out.println("Entrer une seule lettre !");
+            }
+            char lettre = choixLettre.charAt(0);
+            boolean lettreTrouve = false;
+
+            for (int i = 0; i < mot.length(); i++) {
+                if (mot.charAt(i) == lettre) {
+                    affichage[i] = lettre;
+                    lettreTrouve = true;
+
+                }
+            }
+            if (!lettreTrouve) {
+                System.out.println(
+                        "La lettre \u001B[31m" + lettre + "\u001B[0m n'est pas dans le mot,\n vous perdez 1 essai");
+                nbEssai--;
+                char[] lettreFausse = new char[lettre];
+
+                for (char n : lettreFausse) {
+                    tabLettreFausse += n + " ";
+                    
+                }
+            }
+
         }
-
-
-        System.out.println("<<< TROUVER LE MOT SUIVANT >>>\n\t"+motCherche);
-
-        String choixLettre=" ";
-        int nbEssai=6;
-
-        choixLettre =  clavier.nextLine().toUpperCase();
 
         clavier.close();
 
