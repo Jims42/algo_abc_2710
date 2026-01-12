@@ -11,7 +11,7 @@ public class Tri_Tableau_Manuel {
         for (int i = 0; i < tableau1.length; i++) {
             // System.out.print("entrez la valeur " + (i + 1) + " : ");
             // tableau1[i] = clavier.nextInt();
-            tableau1[i] = alea.nextInt(1000);
+            tableau1[i] = alea.nextInt(100);
         }
         System.out.println("\t\t-----------");
         System.out.print("Avant le tri :");
