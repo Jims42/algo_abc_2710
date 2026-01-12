@@ -13,7 +13,8 @@ public class Tri_Tableau {
         int[] monTab = new int[n];
         remplirTableau(monTab);
         AfficherMonTableau(monTab);
-        trierTableau(monTab);
+        // trierTableau(monTab);
+        trierTableauBulle(monTab);
         AfficherMonTableau(monTab);
 
         clavier.close();
@@ -52,5 +53,27 @@ public class Tri_Tableau {
             System.out.print(element + " ");
         }
         System.out.print("\u001B[0m]\n-----------------------------------\n");
+    }
+
+    public static void trierTableauBulle(int[] _Tableau) {
+        boolean echange;
+
+        for (int i = 0; i < _Tableau.length; i++) {
+            echange = false;
+
+            for (int j = 0; j < _Tableau.length - 1 - i; j++) {
+                if (_Tableau[j] > _Tableau[j + 1]) {
+                    int temp = _Tableau[j];
+                    _Tableau[j] = _Tableau[j + 1];
+                    _Tableau[j + 1] = temp;
+
+                    echange = true;
+                }
+            }
+            if (!echange)
+                break;
+
+        }
+        System.out.println("\t===== TABLEAU TRIER BULLE =====");
     }
 }
