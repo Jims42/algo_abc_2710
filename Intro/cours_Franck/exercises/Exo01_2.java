@@ -7,7 +7,7 @@ public class Exo01_2 {
         double R;
         double pi= Math.PI;
 
-        System.out.println("Lire le rayon R d'une sphère puis calculer et afficher: ");
+        System.out.println(Couleurs.tableau1[2]+"Lire le rayon R d'une sphère puis calculer et afficher: "+Couleurs.FIN);
 
         System.out.print("indiquez le rayon : ");R=clavier.nextDouble();
 
