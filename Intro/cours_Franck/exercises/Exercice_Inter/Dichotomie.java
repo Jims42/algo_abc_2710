@@ -1,17 +1,25 @@
 package Exercice_Inter;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Dichotomie {
     public static void main(String[] args) {
         Scanner clavier = new Scanner(System.in);
 
-        // String[] tabNoms = new String[7];
+        // // String[] tabNoms = new String[7];
+        // // for (int i = 0; i < tabNoms.length; i++) {
+        // // System.out.print("Entrer le Nom dans la case "+(i+1)+" : ");
+        // // String prenoms=clavier.nextLine().toUpperCase();
+        // // }
+        // Collection.sort(tabNoms);
         // for (int i = 0; i < tabNoms.length; i++) {
-        // System.out.print("Entrer le Nom dans la case "+(i+1)+" : ");
-        // String prenoms=clavier.nextLine().toUpperCase();
+        //     tabNoms[i]=(String) tabNoms[i].toUpperCase();
+        //     System.out.println(i + 1 + " - || " + tabNoms[i] + " ||");
         // }
+
+
 
         String[] tabNoms = new String[] { "agathe", "berthe", "chloé", "cunégonde", "olga", "raymonde", "sidonie" };
         
@@ -50,6 +58,11 @@ public class Dichotomie {
         }
         return -1;
     }
+    
+
+
+
+    
     
         
     }
