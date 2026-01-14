@@ -19,10 +19,10 @@ public class Denombrer_Lettre {
         }
         int[] occurence = new int[26];
         String phraseMaj = phrase.toUpperCase();
-        System.out.println(phraseMaj+" ");
+        System.out.println(phraseMaj + " ");
         for (int i = 0; i < phraseMaj.length(); i++) {
             char c = phraseMaj.charAt(i);
-System.out.print(c+" ");
+            System.out.print(c + " ");
             if (c >= 'A' && c <= 'Z') {
                 int index = c - 'A';
                 occurence[index]++;

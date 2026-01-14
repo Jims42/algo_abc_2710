@@ -20,6 +20,8 @@ public class Dichotomie {
             tabNoms[i] = (String) tabNoms[i].toUpperCase();
             System.out.println(i + 1 + " - || " + tabNoms[i] + " ||");
         }
+String[][] tabParticipant = new String[n][2];
+
 
         // String[] tabNoms = new String[] { "agathe", "berthe", "chloé", "cunégonde",
         // "olga", "raymonde", "sidonie" };
