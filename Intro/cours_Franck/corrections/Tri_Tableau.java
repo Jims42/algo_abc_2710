@@ -13,27 +13,30 @@ public class Tri_Tableau {
         int[] monTab = new int[n];
         remplirTableau(monTab);
         AfficherMonTableau(monTab);
-        // trierTableau(monTab);
-        trierTableauBulle(monTab);
+        trierTableau(monTab);
+        // trierTableauBulle(monTab);
         AfficherMonTableau(monTab);
 
         clavier.close();
     }
 
     public static void trierTableau(int[] _Tableau) {
+        int passage=0;
         int encours, pluspetit, j, temp;
         for (encours = 0; encours < _Tableau.length; encours++) {
             pluspetit = encours;
             for (j = encours + 1; j < _Tableau.length; j++) {
                 if (_Tableau[j] < _Tableau[pluspetit]) {
                     pluspetit = j;
-                }
+                }passage++;
             }
             temp = _Tableau[encours];
             _Tableau[encours] = _Tableau[pluspetit];
             _Tableau[pluspetit] = temp;
+            
         }
         System.out.println("\t===== TABLEAU TRIER =====");
+        System.out.println("Nombres d'échanges : "+passage);
 
     }
 
@@ -54,9 +57,18 @@ public class Tri_Tableau {
         }
         System.out.print("\u001B[0m]\n-----------------------------------\n");
     }
+    public static void AfficherMonTableau(char[] _Tableau) {
+        System.out.println("-----------------------------------");
+        System.out.print("[\u001B[44m ");
+        for (char element : _Tableau) {
+            System.out.print(element + " ");
+        }
+        System.out.print("\u001B[0m]\n-----------------------------------\n");
+    }
 
     public static void trierTableauBulle(int[] _Tableau) {
         boolean echange;
+        int passage=0;
 
         for (int i = 0; i < _Tableau.length; i++) {
             echange = false;
@@ -69,11 +81,13 @@ public class Tri_Tableau {
 
                     echange = true;
                 }
+                passage++;
             }
             if (!echange)
                 break;
 
         }
         System.out.println("\t===== TABLEAU TRIER BULLE =====");
+        System.out.println("Nombre d'échange : "+passage);
     }
 }
