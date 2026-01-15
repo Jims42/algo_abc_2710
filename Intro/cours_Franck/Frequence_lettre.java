@@ -11,11 +11,12 @@ public class Frequence_lettre {
         char[] alphabet = new char[26];
         int[] tabFrequence = new int[26];
         String phrase = "";
-        System.out.println("Entrer une phrase ");
-        phrase = clavier.nextLine();
+        // System.out.println("Entrer une phrase ");
+        // phrase = clavier.nextLine();
 
         do {
             System.out.println("Veuillez saisir une phrase d'au moins 120 caractères !");
+            phrase=clavier.nextLine();
 
         } while (phrase.length() < 120);
 
@@ -37,7 +38,7 @@ public class Frequence_lettre {
             lettre++;
         }
 
-        // Tri_Tableau.AfficherMonTableau(alphabet);
+        Tri_Tableau.AfficherMonTableau(alphabet);
         for (int i = 0; i < tabFrequence.length; i++) {
             tabFrequence[i] = 0;
         }
@@ -55,39 +56,38 @@ public class Frequence_lettre {
 
         for (int i = 0; i < alphabet.length; i++) {
             alphaFreaquence[i][0] = "" + alphabet[i];
-            
+
         }
         for (int i = 0; i < alphabet.length; i++) {
             alphaFreaquence[i][1] = "" + tabFrequence[i];
-            
+
         }
-        
+        trierTableauBulle(alphaFreaquence);
+
+       
+
         for (String[] sousTableau : alphaFreaquence) {
 
-            System.out.println("lettre alphabet : " + sousTableau[0] + " || Fréquence d'apparition : " + sousTableau[1]);
+            System.out.println("lettre alphabet || '" + sousTableau[0] + "' || Fréquence d'apparition ==> " + sousTableau[1]);
         }
-        for (int i = 0; i < alphaFreaquence.length; i++) {
-            
-        }
-        
-            
-        
-        
+        // System.out.println("\nNombre de passage : " + passage);
+
         // Tri_Tableau.AfficherMonTableau(tabFrequence);
         clavier.close();
     }
+
     public static void trierTableauBulle(int[][] _Tableau) {
         boolean echange;
-        int passage=0;
+        int passage = 0;
 
         for (int i = 0; i < _Tableau.length; i++) {
             echange = false;
 
             for (int j = 0; j < _Tableau.length - 1 - i; j++) {
-                if (_Tableau[j][1] > _Tableau[j][1+1]) {
+                if (_Tableau[j][1] > _Tableau[j][1 + 1]) {
                     int temp = _Tableau[j][1];
-                    _Tableau[j][1] = _Tableau[j][1+1];
-                    _Tableau[j][0+1] = temp;
+                    _Tableau[j][1] = _Tableau[j][1 + 1];
+                    _Tableau[j][0 + 1] = temp;
 
                     echange = true;
                 }
@@ -96,5 +96,35 @@ public class Frequence_lettre {
             if (!echange)
                 break;
         }
+    }
+
+public static void trierTableauBulle(String[][] _Tableau) {
+        boolean echange=false;
+        int passage=0;
+        
+for (int i = 0; i < _Tableau.length; i++) {
+    echange=false;
+            for (int j = 0; j < _Tableau.length - 1; j++) {
+                int val1 = Integer.parseInt(_Tableau[j][1]);
+                int val2 = Integer.parseInt(_Tableau[j + 1][1]);
+
+                if (val1 > val2) {
+                    String tempLettre = _Tableau[j][0];
+                    _Tableau[j][0] = _Tableau[j + 1][0];
+                    _Tableau[j + 1][0] = tempLettre;
+
+                    String tempvaleur = _Tableau[j][1];
+                    _Tableau[j][1] = _Tableau[j + 1][1];
+                    _Tableau[j + 1][1] = tempvaleur;
+
+                    echange=true;
+                }
+                
+            }passage++;
+            if (!echange) 
+                break;
+            
+           
+        }System.out.println(passage+"\n");
     }
 }
