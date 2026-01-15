@@ -55,16 +55,46 @@ public class Frequence_lettre {
 
         for (int i = 0; i < alphabet.length; i++) {
             alphaFreaquence[i][0] = "" + alphabet[i];
+            
         }
         for (int i = 0; i < alphabet.length; i++) {
             alphaFreaquence[i][1] = "" + tabFrequence[i];
+            
         }
+        
         for (String[] sousTableau : alphaFreaquence) {
 
             System.out.println("lettre alphabet : " + sousTableau[0] + " || Fréquence d'apparition : " + sousTableau[1]);
         }
-
+        for (int i = 0; i < alphaFreaquence.length; i++) {
+            
+        }
+        
+            
+        
+        
         // Tri_Tableau.AfficherMonTableau(tabFrequence);
         clavier.close();
+    }
+    public static void trierTableauBulle(int[][] _Tableau) {
+        boolean echange;
+        int passage=0;
+
+        for (int i = 0; i < _Tableau.length; i++) {
+            echange = false;
+
+            for (int j = 0; j < _Tableau.length - 1 - i; j++) {
+                if (_Tableau[j][1] > _Tableau[j][1+1]) {
+                    int temp = _Tableau[j][1];
+                    _Tableau[j][1] = _Tableau[j][1+1];
+                    _Tableau[j][0+1] = temp;
+
+                    echange = true;
+                }
+                passage++;
+            }
+            if (!echange)
+                break;
+        }
     }
 }
