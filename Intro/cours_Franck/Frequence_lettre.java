@@ -38,7 +38,7 @@ public class Frequence_lettre {
             lettre++;
         }
 
-        Tri_Tableau.AfficherMonTableau(alphabet);
+        // Tri_Tableau.AfficherMonTableau(alphabet);
         for (int i = 0; i < tabFrequence.length; i++) {
             tabFrequence[i] = 0;
         }
