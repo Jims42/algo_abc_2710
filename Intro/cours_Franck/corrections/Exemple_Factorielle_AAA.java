@@ -42,7 +42,7 @@ switch (choix) {
     default:
         System.out.println("Erreur : veuillez taper un nombre entier entre 1 et 3.");
         return; // Quitte si le choix est mauvais
-}
+}sc.close();
 
 // 3. Calcul unique et affichage
 if (ordre) {
@@ -52,7 +52,7 @@ if (ordre) {
     res = Exemple_Factorielle.nbCombinaison(n, nbchevaux);
     System.out.println("Vous avez 1 chance de gagner le " + nomJeu + " dans le désordre sur : " + res);
 } 
-sc.close();
+// sc.close();
      }
      public static long factorielleRecursive(long _nb) {
         if (_nb > 1) {

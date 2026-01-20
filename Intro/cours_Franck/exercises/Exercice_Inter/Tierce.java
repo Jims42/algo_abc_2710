@@ -12,23 +12,23 @@ public class Tierce {
         System.out.println("Indiquer le nombre de chevaux que vous avez joués :");
         int nbJouer = clavier.nextInt();
         // Utilisation de BigInteger pour les calculs
-        // BigInteger factN = bigcalculerFactorielle(nbParticipant);
-        // BigInteger factP = bigcalculerFactorielle(nbJouer);
-        // BigInteger factNMoisP = bigcalculerFactorielle(nbParticipant - nbJouer);
+        BigInteger factN = bigcalculerFactorielle(nbParticipant);
+        BigInteger factP = bigcalculerFactorielle(nbJouer);
+        BigInteger factNMoisP = bigcalculerFactorielle(nbParticipant - nbJouer);
 
-        // BigInteger resultatX = factN.divide(factNMoisP);
-        // BigInteger resultatY = factN.divide(factP.multiply(factNMoisP));
+        BigInteger resultatX = factN.divide(factNMoisP);
+        BigInteger resultatY = factN.divide(factP.multiply(factNMoisP));
 
-        //  System.out.println("------- <<< RESULTAT >>> -------\n");
-        // System.out.printf(Locale.US, "Dans l'ordre : 1 Chance sur %,d%n ", resultatX);
+         System.out.println("------- <<< RESULTAT >>> -------\n");
+        System.out.printf(Locale.US, "Dans l'ordre : 1 Chance sur %,d%n ", resultatX);
       
-        // System.out.println("\t--------");
-        // System.out.printf(Locale.US, "Dans le désordre : 1 chance sur %,d%n : ", resultatY);
+        System.out.println("\t--------");
+        System.out.printf(Locale.US, "Dans le désordre : 1 chance sur %,d%n : ", resultatY);
 
-        // System.out.println(
-        //         "Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction…\n Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13 - appel non surtaxé)");
+        System.out.println(
+                "Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction…\n Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13 - appel non surtaxé)");
 
-        // clavier.close();
+        clavier.close();
 
         // utilisation avec maximum 20 participats(long max 64 bits)
 
@@ -47,20 +47,20 @@ public class Tierce {
 
     //     clavier.close();
     // }
-    long resultatX = factorielleRecursive(nbParticipant) / factorielleRecursive(nbParticipant - nbJouer);
-        long resultatY = factorielleRecursive(nbParticipant)
-                / (factorielleRecursive(nbJouer) * factorielleRecursive(nbParticipant - nbJouer));
+    // long resultatX = factorielleRecursive(nbParticipant) / factorielleRecursive(nbParticipant - nbJouer);
+    //     long resultatY = factorielleRecursive(nbParticipant)
+    //             / (factorielleRecursive(nbJouer) * factorielleRecursive(nbParticipant - nbJouer));
 
-        System.out.println("------- <<< RESULTAT >>> -------\n");
-        System.out.printf(Locale.US, "Dans l'ordre : 1 Chance sur %,d%n ", resultatX);
+    //     System.out.println("------- <<< RESULTAT >>> -------\n");
+    //     System.out.printf(Locale.US, "Dans l'ordre : 1 Chance sur %,d%n ", resultatX);
         
-        System.out.println("\t--------");
-        System.out.printf(Locale.US, "Dans le désordre : 1 chance sur %,d%n : ", resultatY);
+    //     System.out.println("\t--------");
+    //     System.out.printf(Locale.US, "Dans le désordre : 1 chance sur %,d%n : ", resultatY);
 
-        System.out.println(
-                "Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction\n Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13 - appel non surtaxé)");
+    //     System.out.println(
+    //             "Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction\n Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13 - appel non surtaxé)");
 
-        clavier.close();
+    //     clavier.close();
 }
 
     public static long calculerFactorielle(int n) {
