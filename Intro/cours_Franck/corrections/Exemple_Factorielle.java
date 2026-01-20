@@ -1,27 +1,38 @@
 package cours_Franck.corrections;
 
 import java.util.Scanner;
+
 public class Exemple_Factorielle {
 
     public static void main(String[] args) {
 
         long nbchevaux, res;
         int choix;
-        boolean ordre;
+        boolean ordre = false;
+        boolean question = false;
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez saisir le nombre de chevaux partant ?");
         nbchevaux = sc.nextLong();
         System.out.println("souhaitez-vous jouer :// un tiercé  1 // un quarté  2 // un quinté: 3?");
         choix = sc.nextInt();
-        
-           
-                System.out.println("arrivée dnas l'ordre ou desordre ? true/false");
-        String reponse = sc.nextLine().trim().toLowerCase();
-if (reponse.equals("true")||reponse.equals("ordre")||reponse.equals("o")||reponse.equals("oui")) {
-    ordre=true;
+        sc.nextLine();
 
+        while (!question) {
 
-        
+            System.out.println("arrivée dans l'ordre ou desordre ? true/false");
+            String reponse = sc.nextLine().trim().toLowerCase();
+            if (reponse.equals("true") || reponse.equals("ordre") || reponse.equals("o") || reponse.equals("oui")) {
+                ordre = true;
+                question = true;
+            } else if (reponse.equals("false") || reponse.equals("desordre") || reponse.equals("n")
+                    || reponse.equals("non")) {
+                ordre = false;
+                question = true;
+            } else {
+                System.out.println("entrer invalide");
+            }
+
+        }
         switch (choix) {
             case 1:
                 if (ordre) {
@@ -58,8 +69,12 @@ if (reponse.equals("true")||reponse.equals("ordre")||reponse.equals("o")||repons
             default:
                 System.out.println("Erreur veuillez taper un nombre entier entre 1 et 3 ");
                 break;
+
         }
-}
+        System.out.println(
+                "Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction\\n"
+                        + //
+                        " Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13 - appel non surtaxé)");
         sc.close();
     }
 
