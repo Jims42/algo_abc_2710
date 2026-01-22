@@ -29,13 +29,13 @@ this.y= _newY;
 System.out.println(this);
     }
     public Point symAbscisse(){
-    return new Point(-this.x,this.y);
+    return new Point(this.x,-this.y);
 }
 public Point symOrdonnees(){
-    return new Point(this.x,-this.y);
+    return new Point(-this.x,this.y);
     }
 public Point symOrigine(){
-        return new Point(-this.x,-this.y);
+        return new Point();
     }
 public void  permuter() {
 double temp =this.x;
@@ -68,6 +68,8 @@ this.y=  _newVal;
 
           Point defaut= new Point();
           System.out.println("Point de coordonnées par default : "+defaut.toString());
+defaut.seDeeplacer(45, 21);
+System.out.println("Position après déplacement ==> "+defaut);
           
           System.out.println("Entrer l'abscisse et l'ordonnées : ");
 
@@ -86,6 +88,8 @@ this.y=  _newVal;
 
         coord1.permuter();
         System.out.println("Après permutation des coordonnées, les nouvelles coordonnées sont ==> "+coord1.toString());
+
+        defaut.afficher();
 
         clavier.close();
     }
