@@ -75,14 +75,14 @@ class Point {
     public void setY(double _newVal) {
         this.y = _newVal;
     }
-    public static String triResultat(double _let1,double _let2,double _coord1,double _coord2,double _absc1,double _absc2, double _ord1,double _ord2, double _orig1,double _orig2, double _dist ){
-        String chaineresult= "|\t\t\t|\t référence point \t|\t référence point \t|\n------------------------------------------------------------------------------------------------------\n";
-        chaineresult+="| Defaut\t\t|\t"+_let1+" \t|\t "+_let2+" \t|\n";
-          chaineresult+="| Nouvelle position \t | \t "+_coord1+" \t | \t "+_coord2+" \t |\n";
-        chaineresult+="| abscisse \t\t | \t"+_absc1+" \t | \t "+_absc2+" \t |\n";
-        chaineresult+="| ordonnées \t\t | \t"+_ord1+" \t | \t "+_ord2+" \t |\n";
+    public static String triResultat(Point _let1,Point _let2,Point _coord1,Point _coord2,Point _absc1,Point _absc2, Point _ord1,Point _ord2, Point _orig1,Point _orig2, double _dist ){
+        String chaineresult= "|\t\t\t |\t référence point \t |\t référence point \t |\n------------------------------------------------------------------------------------------\n";
+        chaineresult+="| Defaut\t\t |\t"+_let1+" \t\t |\t "+_let2+" \t\t |\n";
+          chaineresult+="| Nouvelle position \t | \t "+_coord1+" \t\t | \t "+_coord2+" \t\t |\n";
+        chaineresult+="| abscisse \t\t | \t"+_absc1+" \t\t | \t "+_absc2+" \t |\n";
+        chaineresult+="| ordonnées \t\t | \t"+_ord1+" \t\t | \t "+_ord2+" \t |\n";
         chaineresult+="| origine \t\t | \t"+_orig1+" \t | \t "+_orig2+" \t |\n";
-        chaineresult+="------------------------------------------------------------------------------------------------------------------------------------------------\n| distance entre point \t  |\t\t "+_dist+" \t\t |";
+        chaineresult+="------------------------------------------------------------------------------------------\n| distance entre point \t |\t\t "+_dist+" \t\t\t\t |";
         return chaineresult;
     }
 
@@ -150,7 +150,7 @@ public class TP_Point {
         System.out.println(
                 "La distance entre la point : " + coord1 + " et le point : " + coord2 + " est ==> " + resultat);
 
-              System.out.print( TP_Point.triResultat(defautA,defautB,coord1,coord1,symAbscisse1,symAbscisse2,symOrdonnees1,symOrdonnees2,symOrigine1,symOrigine2,resultat));
+             System.out.println("le resultat avec tableau :\n"+Point.triResultat(defautA,defautB,coord1,coord1,symAbscisse1,symAbscisse2,symOrdonnees1,symOrdonnees2,symOrigine1,symOrigine2,resultat));
 
         clavier.close();
     }
