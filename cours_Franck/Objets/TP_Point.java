@@ -79,8 +79,8 @@ class Point {
         String chaineresult= "|\t\t\t |\t référence point \t |\t référence point \t |\n------------------------------------------------------------------------------------------\n";
         chaineresult+="| Defaut\t\t |\t"+_let1+" \t\t |\t "+_let2+" \t\t |\n";
           chaineresult+="| Nouvelle position \t | \t "+_coord1+" \t\t | \t "+_coord2+" \t\t |\n";
-        chaineresult+="| abscisse \t\t | \t"+_absc1+" \t\t | \t "+_absc2+" \t |\n";
-        chaineresult+="| ordonnées \t\t | \t"+_ord1+" \t\t | \t "+_ord2+" \t |\n";
+        chaineresult+="| abscisse \t\t | \t"+_absc1+" \t\t | \t "+_absc2+" \t\t |\n";
+        chaineresult+="| ordonnées \t\t | \t"+_ord1+" \t\t | \t "+_ord2+" \t\t |\n";
         chaineresult+="| origine \t\t | \t"+_orig1+" \t | \t "+_orig2+" \t |\n";
         chaineresult+="------------------------------------------------------------------------------------------\n| distance entre point \t |\t\t "+_dist+" \t\t\t\t |";
         return chaineresult;
