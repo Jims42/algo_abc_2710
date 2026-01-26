@@ -110,7 +110,7 @@ public class TP_Point {
 
         Point defautB = new Point();
         System.out.println("Point de coordonnées par default : " + defautB.toString());
-        defautB.seDeeplacer(45, 21);
+        defautB.seDeeplacer(3, 10);
         System.out.println("Position après déplacement ==> " + defautB);
 
         System.out.println("Entrer l'abscisse et l'ordonnées de A : ");
