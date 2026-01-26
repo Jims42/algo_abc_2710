@@ -21,12 +21,12 @@ class Point {
     }
 
     public String toString() {
-        return lettre + "(" + x + ", " + y + ")";
+        return this.lettre + "(" + this.x + ", " + this.y + ")";
     }
 
     public void seDeeplacer(double _newX, double _newY) {
-        this.x = _newX;
-        this.y = _newY;
+        this.x += _newX;
+        this.y += _newY;
     }
 
     public void afficher() {
@@ -53,7 +53,8 @@ class Point {
     }
 
     public double distancePoint(Point _autrePoint) {
-        double distPoint = Math.sqrt((Math.pow(this.x - _autrePoint.getx(), 2)) + (Math.pow(this.y - _autrePoint.gety(), 2)));
+        double distPoint = Math
+                .sqrt((Math.pow(this.x - _autrePoint.getx(), 2)) + (Math.pow(this.y - _autrePoint.gety(), 2)));
         return distPoint;
     }
 
@@ -75,14 +76,18 @@ class Point {
     public void setY(double _newVal) {
         this.y = _newVal;
     }
-    public static String triResultat(Point _let1,Point _let2,Point _coord1,Point _coord2,Point _absc1,Point _absc2, Point _ord1,Point _ord2, Point _orig1,Point _orig2, double _dist ){
-        String chaineresult= "|\t\t\t |\t référence point \t |\t référence point \t |\n------------------------------------------------------------------------------------------\n";
-        chaineresult+="| Defaut\t\t |\t"+_let1+" \t\t |\t "+_let2+" \t\t |\n";
-          chaineresult+="| Nouvelle position \t | \t "+_coord1+" \t\t | \t "+_coord2+" \t\t |\n";
-        chaineresult+="| abscisse \t\t | \t"+_absc1+" \t\t | \t "+_absc2+" \t\t |\n";
-        chaineresult+="| ordonnées \t\t | \t"+_ord1+" \t\t | \t "+_ord2+" \t\t |\n";
-        chaineresult+="| origine \t\t | \t"+_orig1+" \t | \t "+_orig2+" \t |\n";
-        chaineresult+="------------------------------------------------------------------------------------------\n| distance entre point \t |\t\t "+_dist+" \t\t\t\t |";
+
+    public static String triResultat(Point _let1, Point _let2, Point _coord1, Point _coord2, Point _absc1, Point _absc2,
+            Point _ord1, Point _ord2, Point _orig1, Point _orig2, double _dist) {
+        String chaineresult = "------------------------------------------------------------------------------------------\n|\t\t\t |\t référence point \t |\t référence point \t |\n------------------------------------------------------------------------------------------\n";
+        chaineresult += "| Defaut\t\t |\t" + _let1 + " \t\t |\t " + _let2 + " \t\t |\n";
+        chaineresult += "| Nouvelle position \t | \t " + _coord1 + " \t\t | \t " + _coord2 + " \t\t |\n";
+        chaineresult += "| abscisse \t\t | \t" + _absc1 + " \t\t | \t " + _absc2 + " \t\t |\n";
+        chaineresult += "| ordonnées \t\t | \t" + _ord1 + " \t\t | \t " + _ord2 + " \t\t |\n";
+        chaineresult += "| origine \t\t | \t" + _orig1 + " \t\t | \t " + _orig2 + " \t\t |\n";
+        chaineresult += "------------------------------------------------------------------------------------------\n| distance entre point \t |\t\t "
+                + _dist + " \t\t\t\t |\n" + //
+                "------------------------------------------------------------------------------------------";
         return chaineresult;
     }
 
@@ -105,7 +110,7 @@ public class TP_Point {
 
         Point defautA = new Point();
         System.out.println("Point de coordonnées par default : " + defautA.toString());
-        defautA.seDeeplacer(45, 21);
+        defautA.seDeeplacer(6, 2);
         System.out.println("Position après déplacement ==> " + defautA);
 
         Point defautB = new Point();
@@ -138,11 +143,13 @@ public class TP_Point {
         Point symOrigine2 = coord2.symOrigine();
         System.out.println("Symétrique par rapport à l'origine est ==> " + symOrigine2.toString());
 
-    //    coord1.permuter();
-    //     System.out.println("Après permutation des coordonnées, les nouvelles coordonnées sont ==> " + coord1.toString());
-        
-    //      coord2.permuter();
-    //     System.out.println("Après permutation des coordonnées, les nouvelles coordonnées sont ==> " + coord2P.toString());
+        // coord1.permuter();
+        // System.out.println("Après permutation des coordonnées, les nouvelles
+        // coordonnées sont ==> " + coord1.toString());
+
+        // coord2.permuter();
+        // System.out.println("Après permutation des coordonnées, les nouvelles
+        // coordonnées sont ==> " + coord2P.toString());
 
         defautA.afficher();
         defautB.afficher();
@@ -150,7 +157,8 @@ public class TP_Point {
         System.out.println(
                 "La distance entre la point : " + coord1 + " et le point : " + coord2 + " est ==> " + resultat);
 
-             System.out.println("le resultat avec tableau :\n"+Point.triResultat(defautA,defautB,coord1,coord1,symAbscisse1,symAbscisse2,symOrdonnees1,symOrdonnees2,symOrigine1,symOrigine2,resultat));
+        System.out.println("le resultat avec tableau :\n" + Point.triResultat(defautA, defautB, coord1, coord2,
+                symAbscisse1, symAbscisse2, symOrdonnees1, symOrdonnees2, symOrigine1, symOrigine2, resultat));
 
         clavier.close();
     }
