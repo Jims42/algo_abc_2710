@@ -74,7 +74,8 @@ public class Compte {
 	}
 
 	public String toString() {
-		return "";
+		String resultChaine= 
+		return resultChaine;
 	}
 
 	/**
