@@ -12,25 +12,14 @@ public class Compte {
 	private double solde;
 	private double decouvertAutorise;
 
-	public void finalize() throws Throwable {
-
-	}
-
-	public final void Compte() {
+	public Compte() {
 		this.numeroUnique = 0;
 		this.nomProprietaire = "";
 		this.solde = 0;
 		this.decouvertAutorise = 0;
 	}
 
-	/**
-	 * 
-	 * @param _num
-	 * @param _nom
-	 * @param _solde
-	 * @param _decouvertAutorise
-	 */
-	public void Compte(int _num, String _nom, double _solde, double _decouvertAutorise) {
+	public Compte(int _num, String _nom, double _solde, double _decouvertAutorise) {
 		this.numeroUnique = _num;
 		this.nomProprietaire = _nom;
 		this.solde = _solde;
@@ -41,78 +30,96 @@ public class Compte {
 		return numeroUnique;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setnumeroUnique(int newVal) {
-		numeroUnique = newVal;
+		this.numeroUnique = newVal;
 	}
 
 	public String getnomProprietaire() {
 		return nomProprietaire;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setnomProprietaire(String newVal) {
-		nomProprietaire = newVal;
+		this.nomProprietaire = newVal;
 	}
 
 	public double getsolde() {
 		return solde;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setsolde(double newVal) {
-		solde = newVal;
-	}
-
-	public String toString() {
-		String resultChaine= 
-		return resultChaine;
-	}
-
-	/**
-	 * 
-	 * @param _montant
-	 */
-	public void crediter(double _montant) {
-
-	}
-
-	/**
-	 * 
-	 * @param _montant
-	 */
-	public boolean debiter(double _montant) {
-		return false;
+		this.solde = newVal;
 	}
 
 	public double getdecouvertAutorise() {
 		return decouvertAutorise;
 	}
 
-	/**
-	 * 
-	 * @param _autrecompte
-	 * @param _montantTransfert
-	 */
-	public boolean transfert(Compte _autrecompte, double _montantTransfert) {
-		return false;
+	public void setDecouvertautorise(double newVal) {
+		this.decouvertAutorise = newVal;
 	}
 
-	/**
-	 * 
-	 * @param _autreCompte
-	 */
-	public boolean compare(Compte _autreCompte) {
-		return false;
+	public String toString() {
+
+		return "Compte de " + nomProprietaire + " : votre solde est de " + solde
+				+ " Euros, avec votre découvert autorisé de " + decouvertAutorise
+				+ " Euros";
 	}
+
+	public void crediter(double _montant) {
+		this.solde += _montant;
+
+	}
+
+	public boolean debiter(double _montant) {
+
+		if (solde - _montant > -decouvertAutorise) {
+			this.solde -= _montant;
+			return true;
+		} else if (solde - _montant == -decouvertAutorise) {
+			System.out.println("vous avez atteint votre découvert maximum autorisé, vous ne pourrez plus retirer");
+			this.solde -= _montant;
+			return true;
+		} else {
+			System.out.println("Découvert autorisé dépassé !!!\nrtrait annulé ");
+			return false;
+		}
+
+	}
+
+	public boolean transfert(Compte _autrecompte, double _montantTransfert) {
+		if (solde - _montantTransfert > -decouvertAutorise) {
+			this.solde -= _montantTransfert;
+			_autrecompte.crediter(_montantTransfert);
+			;
+			return true;
+		}
+		if (solde - _montantTransfert == -decouvertAutorise) {
+			System.out.println(
+					"vous avez atteint votre découvert maximum autorisé, vous ne pourrez plus retirer ou trandferer");
+			this.solde -= _montantTransfert;
+			_autrecompte.crediter(_montantTransfert);
+			return true;
+		} else {
+			System.out.println("Découvert autorisé dépassé !!!\transfert annulé ");
+			return false;
+		}
+
+	}
+
+	public boolean compare(Compte _autreCompte) {
+		if (this.solde >= _autreCompte.getsolde()) {
+			return true;
+
+		} else {
+
+			return false;
+		}
+	}
+	public double livretA(int _nbQuinzaine){
+		double interet=(this.solde*0.015*_nbQuinzaine)/24;
+		System.out.println(getnomProprietaire()+" : Linteret sur l'année est de : "+interet);
+		return interet;
+	}
+	
 
 }
