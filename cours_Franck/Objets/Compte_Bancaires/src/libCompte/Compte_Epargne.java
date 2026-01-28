@@ -5,30 +5,30 @@ import java.util.ArrayList;
 public class Compte_Epargne extends Compte{
     private double tauxInteret;
     
-    private ArrayList<Double> soldesQuinzaine;
+    // private ArrayList<Double> soldesQuinzaine;
 
     public Compte_Epargne(int _num, double _solde,double _taux,String _nom){
         super(_num,_solde,_nom);
         this.tauxInteret=_taux;
-        this.soldesQuinzaine=new ArrayList<>();
-        this.soldesQuinzaine.add(_solde);
+        // this.soldesQuinzaine=new ArrayList<>();
+        // this.soldesQuinzaine.add(_solde);
        
         
     }
-    public void enregistreFinQuinzaine(){
-        if (soldesQuinzaine.size()<24) {
-            soldesQuinzaine.add(this.getsolde());
-        }else{
-            System.out.println("L'année est complète !");
-        }
-    }
-        public double calculInteretAnnuel(){
-            double sommeInteret=0;
-            for (Double soldeMoment : soldesQuinzaine) {
-                sommeInteret+=(soldeMoment*(tauxInteret/100))/24;
-            }
-            return sommeInteret;
-        }
+    // public void enregistreFinQuinzaine(){
+    //     if (soldesQuinzaine.size()<24) {
+    //         soldesQuinzaine.add(this.getsolde());
+    //     }else{
+    //         System.out.println("L'année est complète !");
+    //     }
+    // }
+    //     public double calculInteretAnnuel(){
+    //         double sommeInteret=0;
+    //         for (Double soldeMoment : soldesQuinzaine) {
+    //             sommeInteret+=(soldeMoment*(tauxInteret/100))/24;
+    //         }
+    //         return sommeInteret;
+    //     }
     
     public double getTauxInteret(){
         return tauxInteret;

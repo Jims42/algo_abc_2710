@@ -6,7 +6,8 @@ package libCompte;
  * @created 26-janv.-2026 16:06:50
  */
 public class Compte {
-
+	
+ 
 	private int numeroUnique;
 	protected String nomProprietaire;
 	protected double solde;
@@ -120,8 +121,10 @@ public class Compte {
 
 			return false;
 		}
-	}
-	
+	} 
+
+			
+		}
+
 	
 
-}
