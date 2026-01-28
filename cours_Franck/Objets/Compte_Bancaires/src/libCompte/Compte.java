@@ -8,8 +8,8 @@ package libCompte;
 public class Compte {
 
 	private int numeroUnique;
-	private String nomProprietaire;
-	private double solde;
+	protected String nomProprietaire;
+	protected double solde;
 	private double decouvertAutorise;
 
 	public Compte() {
@@ -17,6 +17,12 @@ public class Compte {
 		this.nomProprietaire = "";
 		this.solde = 0;
 		this.decouvertAutorise = 0;
+	}
+	public Compte(int _num, String _nom, double _solde) {
+        this.numeroUnique = _num;
+        this.nomProprietaire = _nom;
+        this.solde = _solde;
+        this.decouvertAutorise = 0;
 	}
 
 	public Compte(int _num, String _nom, double _solde, double _decouvertAutorise) {
@@ -26,7 +32,7 @@ public class Compte {
 		this.decouvertAutorise = _decouvertAutorise;
 	}
 
-	public double getnumeroUnique() {
+	public int getnumeroUnique() {
 		return numeroUnique;
 	}
 
@@ -115,11 +121,7 @@ public class Compte {
 			return false;
 		}
 	}
-	public double livretA(int _nbQuinzaine){
-		double interet=(this.solde*0.015*_nbQuinzaine)/24;
-		System.out.println(getnomProprietaire()+" : Linteret sur l'année est de : "+interet);
-		return interet;
-	}
+	
 	
 
 }
