@@ -18,14 +18,14 @@ public class Compte {
 		this.solde = 0;
 		this.decouvertAutorise = 0;
 	}
-	public Compte(int _num, String _nom, double _solde) {
+	public Compte(int _num, double _solde, String _nom) {
         this.numeroUnique = _num;
         this.nomProprietaire = _nom;
         this.solde = _solde;
         this.decouvertAutorise = 0;
 	}
 
-	public Compte(int _num, String _nom, double _solde, double _decouvertAutorise) {
+	public Compte(int _num, double _solde, double _decouvertAutorise, String _nom) {
 		this.numeroUnique = _num;
 		this.nomProprietaire = _nom;
 		this.solde = _solde;
@@ -68,7 +68,7 @@ public class Compte {
 
 		return "Compte de " + nomProprietaire + " : votre solde est de " + solde
 				+ " Euros, avec votre découvert autorisé de " + decouvertAutorise
-				+ " Euros";
+				+ " Euros\n";
 	}
 
 	public void crediter(double _montant) {

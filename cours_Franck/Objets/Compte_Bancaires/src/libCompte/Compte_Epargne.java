@@ -1,27 +1,42 @@
 package libCompte;
 
- public class Compte_Epargne extends Compte{
-    private double tauxInteret;
-    private int quinzaine;
+import java.util.ArrayList;
 
-    public Compte_Epargne(int _num,String _nom, double _solde,double _taux, int _quinzaine ){
-        super(_num,_nom,_solde);
+public class Compte_Epargne extends Compte{
+    private double tauxInteret;
+    
+    private ArrayList<Double> soldesQuinzaine;
+
+    public Compte_Epargne(int _num, double _solde,double _taux,String _nom){
+        super(_num,_solde,_nom);
         this.tauxInteret=_taux;
-        this.quinzaine=_quinzaine;
+        this.soldesQuinzaine=new ArrayList<>();
+        this.soldesQuinzaine.add(_solde);
+       
         
     }
+    public void enregistreFinQuinzaine(){
+        if (soldesQuinzaine.size()<24) {
+            soldesQuinzaine.add(this.getsolde());
+        }else{
+            System.out.println("L'année est complète !");
+        }
+    }
+        public double calculInteretAnnuel(){
+            double sommeInteret=0;
+            for (Double soldeMoment : soldesQuinzaine) {
+                sommeInteret+=(soldeMoment*(tauxInteret/100))/24;
+            }
+            return sommeInteret;
+        }
+    
     public double getTauxInteret(){
         return tauxInteret;
     }
     public void setTauxInteret(double _newVal){
         this.tauxInteret=_newVal;
     }
-    public int getQuinzaine(){
-        return quinzaine;
-    }
-    public void setQuinzaine(int _newVal){
-        this.quinzaine=_newVal;
-    }
+    
 
 
         
@@ -33,7 +48,7 @@ package libCompte;
 	}
 public String toString(){
  
-    return "Compte de "+nomProprietaire+ " : votre solde est de "+solde+" euros et votre taux d'intéret est : "+ this.tauxInteret;
+    return "Compte de "+nomProprietaire+ " : votre solde est de "+solde+" euros et votre taux d'intéret est : "+ this.tauxInteret+" %\n";
 }
     
 
