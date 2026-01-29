@@ -68,7 +68,7 @@ public class Compte {
 	}
 
 	public String toString() {
-	 return "ID: " + numeroUnique + " | Nom: " + nomProprietaire + " | Solde: " + solde + "€ (Découvert: " + decouvertAutorise + "€)";
+	 return "Compte courant | ID: " + numeroUnique + " | Nom: " + nomProprietaire + " | Solde: " + solde + " euros (Découvert: " + decouvertAutorise + " euros)\n";
 
 		// return "Compte de " + nomProprietaire + " : votre solde est de " + solde
 		// 		+ " Euros, avec votre découvert autorisé de " + decouvertAutorise

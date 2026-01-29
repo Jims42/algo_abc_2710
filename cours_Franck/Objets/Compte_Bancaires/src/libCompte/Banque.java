@@ -12,5 +12,13 @@ public class Banque {
         Compte resultat=new Compte(_numeroUnique, _solde, _decouvertAutorise, _nomProp);
         mesComptes.add(resultat);
     }
+    public String toString(){
+        String resultat="";
+    
+        for (Compte compte : mesComptes) {
+            resultat+=compte.toString();
+          }
+        return resultat;
+    }
 
 }

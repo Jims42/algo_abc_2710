@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import libCompte.Banque;
 import libCompte.Compte;
 import libCompte.Compte_Epargne;
 
@@ -11,19 +12,43 @@ public class App {
         double monDecouvert, monDecouvert1;
         String monNom, monNom1;
         int monID, monID1;
-        int chosirTransfert=0;
+        int chosirTransfert = 0;
+        Banque banque = new Banque();
+        boolean ouvrirCompte = false;
+        int choixCompte;
 
-        System.out.println("Création de compte\nEnter ID du client, sont solde et sont découvert autorisé, son nom : ");
-        Compte monCompte = new Compte(monID = clavier.nextInt(), monSolde = clavier.nextDouble(),
-                monDecouvert = clavier.nextDouble(), monNom = clavier.next());
-        clavier.hasNextLine();
-        System.out.println(monCompte);
+        while (!ouvrirCompte) {
 
-        System.out.println("Creation du compte épargne livret A\nIndiquer son ID, son solde et son nom :");
-        Compte_Epargne monCompte1 = new Compte_Epargne(monID1 = clavier.nextInt(), monSolde1 = clavier.nextDouble(),
-                taux, monNom1 = clavier.next());
-        clavier.nextLine();
-        System.out.println(monCompte1);
+            System.out.println("Voulez vous ouvrir un compte ?");
+            String ouverture = clavier.nextLine();
+
+            if (ouverture.equals("oui") || ouverture.equals("true")) {
+                System.out.println("TAPER '1' pour un compte courant ou TAPER '2' pour un compte epargne ");
+                int choix = clavier.nextInt();
+                clavier.nextLine();
+                if (choix == 1) {
+                    System.out.println(
+                            "Création de compte\nEnter ID du client, sont solde et sont découvert autorisé, son nom : ");
+                    Compte monCompte = new Compte(monID = clavier.nextInt(), monSolde = clavier.nextDouble(),
+                            monDecouvert = clavier.nextDouble(), monNom = clavier.next());
+                    clavier.hasNextLine();
+                }
+                if (choix == 2) {
+                    System.out.println("Creation du compte épargne livret A\nIndiquer son ID, son solde et son nom :");
+                    Compte_Epargne monCompte1 = new Compte_Epargne(monID1 = clavier.nextInt(),
+                            monSolde1 = clavier.nextDouble(),
+                            taux, monNom1 = clavier.next());
+                    clavier.nextLine();
+
+                }
+            }
+        }
+
+        banque.addCompte(monCompte);
+        System.out.println(banque);
+
+        banque.addCompte(monCompte1);
+        System.out.println(banque);
 
         System.out.println("Pour le compte de " + monNom + " indiquer la somme que vous voulez créditer : ");
         double remplirCompte = clavier.nextDouble();

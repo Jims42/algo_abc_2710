@@ -48,7 +48,7 @@ public class Compte_Epargne extends Compte{
 	}
 public String toString(){
  
-    return "Compte de "+nomProprietaire+ " : votre solde est de "+solde+" euros et votre taux d'intéret est : "+ this.tauxInteret+" %\n";
+    return "Compte Epargne | ID: " + getnumeroUnique() + " | Nom: " + nomProprietaire + " | Solde: " + solde + " euros (Découvert: " + tauxInteret + " %)\n";
 }
     
 
