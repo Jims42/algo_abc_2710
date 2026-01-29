@@ -74,8 +74,9 @@ public class App {
                 montantTransfert = clavier.nextDouble();
 
                 (monCompte1).transfert(monCompte, montantTransfert);
-                System.out.println(monCompte + "\n" + monCompte);
+                System.out.println(monCompte1 + "\n" + monCompte);
             default:
+                System.out.println("Personne inconnu de nos registres");
                 break;
         }
 

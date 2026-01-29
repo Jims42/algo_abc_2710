@@ -1,5 +1,7 @@
 package libCompte;
 
+import java.util.ArrayList;
+
 /**
  * @author JCoco
  * @version 1.0
@@ -7,7 +9,6 @@ package libCompte;
  */
 public class Compte {
 	
- 
 	private int numeroUnique;
 	protected String nomProprietaire;
 	protected double solde;
@@ -31,6 +32,7 @@ public class Compte {
 		this.nomProprietaire = _nom;
 		this.solde = _solde;
 		this.decouvertAutorise = _decouvertAutorise;
+		
 	}
 
 	public int getnumeroUnique() {
@@ -66,10 +68,11 @@ public class Compte {
 	}
 
 	public String toString() {
+	 return "ID: " + numeroUnique + " | Nom: " + nomProprietaire + " | Solde: " + solde + "€ (Découvert: " + decouvertAutorise + "€)";
 
-		return "Compte de " + nomProprietaire + " : votre solde est de " + solde
-				+ " Euros, avec votre découvert autorisé de " + decouvertAutorise
-				+ " Euros\n";
+		// return "Compte de " + nomProprietaire + " : votre solde est de " + solde
+		// 		+ " Euros, avec votre découvert autorisé de " + decouvertAutorise
+		// 		+ " Euros\n";
 	}
 
 	public void crediter(double _montant) {
