@@ -1,12 +1,18 @@
-package cours_Franck.corrections.objets;
+package cours_Franck\corrections\objets\Compte_Bancaire_Correction;
 
 public class Banque {
     private int nbComptes;
     private Compte[] lesComptes=new Compte[20];
+    
+    public Banque(){
     this.nbComptes=0;
+    }
 
     private void ajouteCompte(Compte _unCompte){
-        lesComptes[nbComptes++]=_unCompte;
+        if (nbComptes < lesComptes.length) {
+            lesComptes[nbComptes] = _unCompte;
+            nbComptes++;
+        }
     }
 
     public void init(){
@@ -25,12 +31,13 @@ public class Banque {
     }
 
     public String toString(){
-        String resultat="";
-        for (Compte  compte : lesComptes) {
-            resultat+=compte.toString();
+        String resultat="Liste des comptes :\n";
+        for(int i=0;i<nbComptes;i++){
+            resultat+= lesComptes[i].toString()+"\n"
         }
+        return resultat;
     }
 
 
-    
+
 }
