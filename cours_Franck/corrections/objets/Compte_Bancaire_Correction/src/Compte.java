@@ -135,9 +135,9 @@ public class Compte {
      */
     public String toString() {
         return "Compte n°" + this.numero +
-                " Propriétaire: " + this.nomPropietaire +
-                " Solde: " + this.solde + " euros" +
-                " Découvert autorisé: " + this.decouvertAutorise + " euros";
+                "|  Propriétaire: " + this.nomPropietaire +
+                " | Solde: " + this.solde + " euros" +
+                " | Découvert autorisé: " + this.decouvertAutorise + " euros";
     }
 
 }
