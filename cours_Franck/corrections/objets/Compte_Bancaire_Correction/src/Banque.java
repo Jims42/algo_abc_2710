@@ -1,4 +1,4 @@
-package Compte_Bancaire_Correction;
+package cours_Franck\corrections\objets\Compte_Bancaire_Correction;
 
 public class Banque {
     private int nbComptes;
@@ -33,7 +33,7 @@ public class Banque {
     public String toString(){
         String resultat="Liste des comptes :\n";
         for(int i=0;i<nbComptes;i++){
-            resultat+= lesComptes[i].toString()+"\n";
+            resultat+= lesComptes[i].toString()+"\n"
         }
         return resultat;
     }
