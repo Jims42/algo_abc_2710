@@ -51,4 +51,24 @@ public class Banque {
 
     }
 
+    public void triComptes() {
+
+        boolean permut;
+        do {
+            permut = false;
+            for (int i = 0; i < nbComptes - 1; i++) {
+
+                if (lesComptes[i].getsolde() < lesComptes[i + 1].getsolde()) {
+                    Compte temp = lesComptes[i];
+                    lesComptes[i] = lesComptes[i + 1];
+                    lesComptes[i + 1] = temp;
+
+                    permut = true;
+                }
+
+            }
+        } while (permut);
+
+    }
+
 }

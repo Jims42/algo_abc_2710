@@ -12,6 +12,9 @@ public class App {
     
 
         System.out.println(mescomptes);
+        mescomptes.triComptes();
+         System.out.println(mescomptes);
+
        Compte soldeEleve=mescomptes.compteSup();
        
        System.out.println(soldeEleve);
