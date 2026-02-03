@@ -2,6 +2,7 @@
 
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Compte {
     //attributs
@@ -9,7 +10,7 @@ public class Compte {
     protected String nomPropietaire;
     protected int numero;
     protected double solde;
-
+Random aleas=new Random();
     // permet d'effectuer des opérations de finalisation en général une opération de nettoyage d'un objet avant que le système de Garbage Collector ne s'en charge
 
     public void finalize() throws Throwable {
@@ -56,8 +57,9 @@ public class Compte {
     // constructeur avec paramètres
 
     public Compte(String _nomProprio, double _solde, double _decouvertAutorise) {
+        int nbTest=aleas.nextInt(1,1001);
         LocalDateTime locTimes = LocalDateTime.now();
-        this.numero = locTimes.hashCode();
+        this.numero = Math.abs(locTimes.hashCode()+nbTest);
         this.nomPropietaire = _nomProprio;
         this.solde = _solde;
         this.decouvertAutorise = _decouvertAutorise;

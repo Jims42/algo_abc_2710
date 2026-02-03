@@ -6,7 +6,7 @@ public class Banque {
     this.nbComptes=0;
     }
 
-    private void ajouteCompte(Compte _unCompte){
+    public void ajouteCompte(Compte _unCompte){
         if (nbComptes < lesComptes.length) {
             lesComptes[nbComptes] = _unCompte;
             nbComptes++;
