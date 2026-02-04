@@ -2,7 +2,7 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args)  {
-     Banque mescomptes=new Banque();
+     Banque mescomptes=new Banque("paris");
      mescomptes.init();
         Scanner clavier=new Scanner(System.in);
     Compte monCompte=new Compte("totor",5000,-200);
@@ -18,6 +18,8 @@ public class App {
        Compte soldeEleve=mescomptes.compteSup();
        
        System.out.println(soldeEleve);
+
+
 
         clavier.close();
     }

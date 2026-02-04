@@ -2,10 +2,13 @@ import java.util.Arrays;
 
 public class Banque {
     private int nbComptes;
-    private Compte[] lesComptes = new Compte[20];
+    private Compte[] lesComptes;
+    private String nomBanque;
 
-    public Banque() {
+    public Banque(String _nomBanque) {
+        this.lesComptes = new Compte[20];
         this.nbComptes = 0;
+        this.nomBanque = _nomBanque;
     }
 
     public void ajouteCompte(Compte _unCompte) {
@@ -38,17 +41,19 @@ public class Banque {
         return resultat;
     }
 
+    public void ajouterNouveauCompte(String _nom, double _solde, double _decouvert) {
+
+        this.ajouterNouveauCompte(_nom, _solde, _decouvert);
+    }
+
     public Compte compteSup() {
         Compte max = lesComptes[0];
         for (int i = 1; i < nbComptes; i++) {
             if (lesComptes[i].getsolde() > max.getsolde()) {
                 max = lesComptes[i];
             }
-
         }
-
         return max;
-
     }
 
     public void triComptes() {
@@ -65,10 +70,17 @@ public class Banque {
 
                     permut = true;
                 }
-
             }
         } while (permut);
+    }
 
+    public Compte rendCompte(int _numero) {
+        for (int i = 0; i < nbComptes; i++) {
+            if (lesComptes[i].getnumero() == _numero) {
+                return lesComptes[i];
+            }
+        }
+        return null;
     }
 
 }
