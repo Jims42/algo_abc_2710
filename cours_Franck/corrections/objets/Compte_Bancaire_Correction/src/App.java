@@ -10,7 +10,7 @@ public class App {
     mescomptes.ajouteCompte(monCompte);
     mescomptes.ajouteCompte(monCompte1);
     
-
+ mescomptes.ajouterNouveauCompte("grominet", 26000, -300);
         System.out.println(mescomptes);
         mescomptes.triComptes();
          System.out.println(mescomptes);
@@ -18,7 +18,20 @@ public class App {
        Compte soldeEleve=mescomptes.compteSup();
        
        System.out.println(soldeEleve);
+      
+System.out.println("Enter le numéro de compte :");
+int numRech=clavier.nextInt();
 
+System.out.println(mescomptes.rendCompte(numRech));
+
+System.out.println("Indiquer le compte source à débiter  pour transfert :");
+int source=clavier.nextInt();
+System.out.println("Indiquer le compte destinataire pour transfert : ");
+int dsetination=clavier.nextInt();
+System.out.println("Indiquer le montant du transfert en euros : ");
+double montantTransf=clavier.nextDouble();
+mescomptes.transferCompte(source, dsetination, montantTransf);
+System.out.println(mescomptes.rendCompte(source)+ "\n "+mescomptes.rendCompte(dsetination));
 
 
         clavier.close();

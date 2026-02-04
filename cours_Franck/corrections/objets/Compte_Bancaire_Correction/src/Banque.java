@@ -42,8 +42,8 @@ public class Banque {
     }
 
     public void ajouterNouveauCompte(String _nom, double _solde, double _decouvert) {
-
-        this.ajouterNouveauCompte(_nom, _solde, _decouvert);
+Compte monCompte=new Compte(_nom, _solde, _decouvert);
+        this.ajouteCompte(monCompte);
     }
 
     public Compte compteSup() {
@@ -82,5 +82,16 @@ public class Banque {
         }
         return null;
     }
+    public boolean transferCompte(int _numero,int _autrenNum, double _montant){
+       Compte source=this.rendCompte(_numero);
+        Compte desti=this.rendCompte(_autrenNum);
+        if (source!=null&&desti!=null) {
+            if(source.transferer(_montant, desti)){
+                return true;
+            }
+        }
+        return false;
+        
 
+}
 }
