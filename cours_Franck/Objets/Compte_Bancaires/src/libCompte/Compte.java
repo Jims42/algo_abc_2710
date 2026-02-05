@@ -16,7 +16,7 @@ public class Compte {
 
 	public Compte() {
 		this.numeroUnique = 0;
-		this.nomProprietaire = "";
+		this.nomProprietaire = "sans nom";
 		this.solde = 0;
 		this.decouvertAutorise = 0;
 	}
@@ -47,8 +47,13 @@ public class Compte {
 		return nomProprietaire;
 	}
 
-	public void setnomProprietaire(String newVal) {
-		this.nomProprietaire = newVal;
+	public boolean setnomProprietaire(String newVal) {
+		if (this.nomProprietaire.equals("sans nom")) {
+				this.nomProprietaire = newVal;
+				return true;
+		}else{
+		return false;
+		}
 	}
 
 	public double getsolde() {
@@ -68,7 +73,7 @@ public class Compte {
 	}
 
 	public String toString() {
-	 return "Compte courant | ID: " + numeroUnique + " | Nom: " + nomProprietaire + " | Solde: " + solde + " euros (Découvert: " + decouvertAutorise + " euros)\n";
+	 return "\u001B[43mCompte courant\u001B[0m \u001B[33m||\u001B[0m ID: \u001B[36m" + numeroUnique + "\u001B[0m \u001B[33m||\u001B[0m Nom: \u001B[34m" + nomProprietaire + "\u001B[0m \u001B[33m||\u001B[0m Solde: \u001B[32m" + solde + "\u001B[0m euros (Découvert: \u001B[31m" + decouvertAutorise + "\u001B[0m euros)\n";
 
 		// return "Compte de " + nomProprietaire + " : votre solde est de " + solde
 		// 		+ " Euros, avec votre découvert autorisé de " + decouvertAutorise

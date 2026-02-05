@@ -48,7 +48,7 @@ public class Compte_Epargne extends Compte{
 	}
 public String toString(){
  
-    return "Compte Epargne | ID: " + getnumeroUnique() + " | Nom: " + nomProprietaire + " | Solde: " + solde + " euros (Découvert: " + tauxInteret + " %)\n";
+    return "\u001B[45mCompte Epargne\u001B[0m \u001B[35m||\u001B[0m ID: \u001B[36m" + getnumeroUnique() + "\u001B[0m \u001B[35m||\u001B[0m Nom: \u001B[34m" + nomProprietaire + "\u001B[0m \u001B[35m||\u001B[0m Solde: \u001B[32m" + solde + "\u001B[0m euros (Découvert: \u001B[31m" + tauxInteret + "\u001B[0m %)\n";
 }
     
 
