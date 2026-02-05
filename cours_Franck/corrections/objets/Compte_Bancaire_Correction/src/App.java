@@ -33,6 +33,9 @@ double montantTransf=clavier.nextDouble();
 mescomptes.transferCompte(source, dsetination, montantTransf);
 System.out.println(mescomptes.rendCompte(source)+ "\n "+mescomptes.rendCompte(dsetination));
 
+mescomptes.triComptes();
+System.out.println(mescomptes);
+
 
         clavier.close();
     }

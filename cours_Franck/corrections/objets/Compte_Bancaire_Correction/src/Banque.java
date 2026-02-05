@@ -34,15 +34,16 @@ public class Banque {
     }
 
     public String toString() {
-        String resultat = "Liste des comptes :\n";
+        String resultat = "\u001B[33m---------------------------------------------------------------------------------------------------\u001B[0m\n\t\t\t\t\u001B[43mListe des comptes :\u001b[0m\n";
         for (int i = 0; i < nbComptes; i++) {
             resultat += lesComptes[i].toString() + "\n";
         }
+        resultat += "\u001B[33m---------------------------------------------------------------------------------------------------\u001B[0m\n";
         return resultat;
     }
 
     public void ajouterNouveauCompte(String _nom, double _solde, double _decouvert) {
-Compte monCompte=new Compte(_nom, _solde, _decouvert);
+        Compte monCompte = new Compte(_nom, _solde, _decouvert);
         this.ajouteCompte(monCompte);
     }
 
@@ -82,16 +83,16 @@ Compte monCompte=new Compte(_nom, _solde, _decouvert);
         }
         return null;
     }
-    public boolean transferCompte(int _numero,int _autrenNum, double _montant){
-       Compte source=this.rendCompte(_numero);
-        Compte desti=this.rendCompte(_autrenNum);
-        if (source!=null&&desti!=null) {
-            if(source.transferer(_montant, desti)){
+
+    public boolean transferCompte(int _numero, int _autrenNum, double _montant) {
+        Compte source = this.rendCompte(_numero);
+        Compte desti = this.rendCompte(_autrenNum);
+        if (source != null && desti != null) {
+            if (source.transferer(_montant, desti)) {
                 return true;
             }
         }
         return false;
-        
 
-}
+    }
 }
