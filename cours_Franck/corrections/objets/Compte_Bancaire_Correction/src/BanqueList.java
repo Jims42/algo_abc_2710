@@ -63,6 +63,34 @@ public class BanqueList {
         }
         return compteMax;
     }
+    public List<Compte> rechercheComptesMax() {
+    List<Compte> comptesMax = new ArrayList<>();
+    
+    if (lesComptes.isEmpty()) {
+        return comptesMax;
+    }
+
+    // On initialise avec le premier compte
+    double soldeMax = ((Compte) lesComptes.get(0)).getsolde();
+    comptesMax.add((Compte) lesComptes.get(0));
+
+    for (int i = 1; i < lesComptes.size(); i++) {
+        Compte c = (Compte) lesComptes.get(i);
+        double soldeCourant = c.getsolde();
+
+        if (soldeCourant > soldeMax) {
+            // Nouveau record : on vide tout et on recommence la liste
+            soldeMax = soldeCourant;
+            comptesMax.clear();
+            comptesMax.add(c);
+        } else if (soldeCourant == soldeMax) {
+            // Ex-æquo : on ajoute à la liste existante
+            comptesMax.add(c);
+        }
+    }
+    
+    return comptesMax;
+}
 
     public Compte rechercheCompte(int _numero, int _tabPosition[]) {
         for (Object object : lesComptes) {
