@@ -54,15 +54,16 @@ public class BanqueList {
     public void ajouterNouveauCompte(Compte _unCompte){
         this.lesComptes.add(_unCompte);
     }
-    public Compte rechercheCompteMax() {
-        Compte compteMax = (Compte) lesComptes.get(0);
-        for (int i = 1; i < lesComptes.size(); i++) {
-            if (((Compte) lesComptes.get(i)).getsolde() > ((compteMax).getsolde())) {
-                compteMax = (Compte) (lesComptes.get(i));
-            }
-        }
-        return compteMax;
-    }
+    // public Compte rechercheCompteMax() {
+    //     Compte compteMax = (Compte) lesComptes.get(0);
+    //     for (int i = 1; i < lesComptes.size(); i++) {
+    //         if (((Compte) lesComptes.get(i)).getsolde() > ((compteMax).getsolde())) {
+    //             compteMax = (Compte) (lesComptes.get(i));
+    //         }
+    //     }
+    //     return compteMax;
+    // }
+    
     public List<Compte> rechercheComptesMax() {
     List<Compte> comptesMax = new ArrayList<>();
     
