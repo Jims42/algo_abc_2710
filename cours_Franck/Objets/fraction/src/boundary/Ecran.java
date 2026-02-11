@@ -20,8 +20,8 @@ public class Ecran {
 	
 	
 	public static void affiche(Fraction _fraction){
-		if (_fraction.getNumerateur()==1) {
-			System.out.println("Fraction entière: "+_fraction.getNumerateur());
+		if (_fraction.getDenominateur()==1) {
+			System.out.println("Fraction entiere: "+_fraction.getNumerateur());
 		}else{
 			System.out.println("Fraction : "+_fraction);
 		}
@@ -31,7 +31,7 @@ public class Ecran {
 	public static void affiche(LinkedList<Fraction> _uneliste){
 		int compteur=1;
 		for (Fraction fraction : _uneliste) {
-			System.out.print("Fraction numéro "+compteur+ ": ");
+			System.out.print("Fraction numero "+compteur+ ": ");
 			affiche(fraction);
 			compteur++;
 		}
