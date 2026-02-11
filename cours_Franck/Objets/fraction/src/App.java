@@ -43,6 +43,11 @@ public class App {
         System.out.println("---------------------------------------------------------------------------------------------------");
         System.out.println("La multiplication des deux fraction est : "+f.multiFraction(f2));
         System.out.println("---------------------------------------------------------------------------------------------------");
+        System.out.println("\t\tPUISSANCE");
+        System.out.println("---------------------------------------------------------------------------------------------------");
+        System.out.println("La puissance des deux fraction : "+f.puissanceFraction(4));
+        System.out.println("---------------------------------------------------------------------------------------------------");
+        
 
     }
 }
