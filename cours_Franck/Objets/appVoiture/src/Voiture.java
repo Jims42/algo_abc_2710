@@ -10,7 +10,7 @@ public class Voiture {
 	protected String marqueVoiture;
 	protected String modele;
 	protected int poids;
-	private Moteur moteur;
+	protected Moteur moteur;
 
 	public Voiture() {
 		this.marqueVoiture = "";
@@ -66,15 +66,16 @@ public class Voiture {
 	}
 
 	public String toString() {
-		return "Marque du vehicule ==> "+marqueVoiture + "\nModele ==> " + modele +"\nPoids ==> "+ poids + " kg\n"+moteur.toString();
-
+		return "-----------------------------VOITURE--------------------------------------------------\nMarque du vehicule ==> "+marqueVoiture + "\nModele ==> " + modele +"\nPoids ==> "+ poids + " kg\n"+moteur.toString();
+    
 	}
 
 	public double vitesseMax() {
-		double vitesseMax=this.moteur.getVitesseTheorique()-(this.poids*0.1);
+		double vitesseMax=this.moteur.getVitesseTheorique()-(this.poids*0.3);
 		
 		
 		return vitesseMax;
 	}
+	
 
 }

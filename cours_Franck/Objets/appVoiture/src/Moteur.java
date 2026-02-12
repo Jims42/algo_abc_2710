@@ -37,8 +37,8 @@ public class Moteur {
 		this.marqueMoteur = _newVal;
 	}
 	public String toString(){
-		return "Moteur ==> "+marqueMoteur+"\nVitesse theorique ==> "+vitesseTheorique+" km/h\n";
-	}
+		return "-------------------------VITESSE MAX VOITURE------------------------------------------\nMoteur ==> "+marqueMoteur+"\nVitesse theorique ==> "+vitesseTheorique+" km/h";
+	}       
 
 
 }
