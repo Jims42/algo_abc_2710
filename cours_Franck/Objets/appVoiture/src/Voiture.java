@@ -11,6 +11,8 @@ public class Voiture {
 	protected String modele;
 	protected int poids;
 	protected Moteur moteur;
+	protected Moteur _lemoteur;
+	public Moteur m_Moteur;
 
 	public Voiture() {
 		this.marqueVoiture = "";
@@ -57,7 +59,11 @@ public class Voiture {
 		this.modele = _newVal;
 	}
 
-	public void setPoids(int _newVal) {
+	/**
+	 * 
+	 * @param _newPoids
+	 */
+	public void setPoids(int _newPoids) {
 		this.poids = _newVal;
 	}
 
@@ -70,11 +76,35 @@ public class Voiture {
     
 	}
 
-	public double vitesseMax() {
+	public Voiture vitesseMax() {
 		double vitesseMax=this.moteur.getVitesseTheorique()-(this.poids*0.3);
 		
 		
 		return vitesseMax;
+	}
+
+	/**
+	 * 
+	 * @param _marque
+	 * @param _modele
+	 * @param _poids
+	 * @param _marqueMoteur
+	 * @param _vitesseMoteur
+	 */
+	public Voiture(String _marque, String _modele, double _poids, String _marqueMoteur, double _vitesseMoteur){
+
+	}
+
+	public Moteur get_lemoteur(){
+		return _lemoteur;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void set_lemoteur(Moteur newVal){
+		_lemoteur = newVal;
 	}
 	
 

@@ -9,6 +9,7 @@ public class Moteur {
 
 	private String marqueMoteur;
 	private int vitesseTheorique;
+	private int vitesse;
 	
 	public Moteur(){
 		this.marqueMoteur="";
@@ -38,6 +39,31 @@ public class Moteur {
 	}
 	public String toString(){
 		return "-------------------------VITESSE MAX VOITURE------------------------------------------\nMoteur ==> "+marqueMoteur+"\nVitesse theorique ==> "+vitesseTheorique+" km/h";
+	}
+
+	/**
+	 * 
+	 * @param _marque
+	 * @param _vitesseMax
+	 */
+	public void Moteur(String _marque, double _vitesseMax){
+
+	}
+
+	public String getmarqueMoteur(){
+		return marqueMoteur;
+	}
+
+	public int getvitesse(){
+		return vitesse;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setvitesse(int newVal){
+		vitesse = newVal;
 	}       
 
 
