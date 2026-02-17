@@ -4,31 +4,38 @@ package libVoiture;
 public class Moteur {
 
 	private String marqueMoteur;
-	private int vitesseTheorique;
+	private double vitesseTheorique;
 
 	public Moteur(){
 
 	}
-	public Moteur(String _marqueMoteur, int _vitesseMaxTheorique){
+	public Moteur(String _marqueMoteur, double _vitesseMaxTheorique){
 this.marqueMoteur=_marqueMoteur;
 this.vitesseTheorique=_vitesseMaxTheorique;
 	}
 
 	public String getMarqueMoteur(){
-		return marqueMoteur;
+		return this.marqueMoteur;
+	}
+	public double getVitesseTheorique(){
+		return this.vitesseTheorique;
 	}
 
 	
-	public void setVitesseTheorique(int _newVal){
+	public void setVitesseTheorique(double _newVal){
 this.vitesseTheorique=_newVal;
 	}
 
 	public void setMarqueMoteur(String _newVal){
 this.marqueMoteur=_newVal;
 	}
-
+	/**
+	 * Affiche le moteur et ses spécification
+	 * @return chaine de caractere 
+	 */
+@Override
 	public String toString(){
-		return "";
+		return "Moteur ==> "+this.marqueMoteur+"\nVitese Max ==> "+this.vitesseTheorique+" Km/h";
 	}
 
 	
