@@ -64,7 +64,7 @@ public class Voiture {
 	 * @param _newPoids
 	 */
 	public void setPoids(int _newPoids) {
-		this.poids = _newVal;
+		this.poids = _newPoids;
 	}
 
 	public void setMoteur(Moteur _newVal) {
@@ -76,7 +76,7 @@ public class Voiture {
     
 	}
 
-	public Voiture vitesseMax() {
+	public double vitesseMax() {
 		double vitesseMax=this.moteur.getVitesseTheorique()-(this.poids*0.3);
 		
 		

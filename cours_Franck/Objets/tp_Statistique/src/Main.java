@@ -18,9 +18,9 @@ public class Main {
 
         Statistique stats = new Statistique(salaires);
 
-        double moy = stats.calculerMoyenne();
-        double med = stats.calculerMediane();
-        double sigma = stats.calculerEcartType();
+        double moy = stats.calculMoyenne();
+        double med = stats.calculMedianne();
+        double sigma = stats.ecartType();
         double q1 = stats.calculerQ1();
         double q3 = stats.calculerQ3();
 
