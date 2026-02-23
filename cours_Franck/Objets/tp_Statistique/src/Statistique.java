@@ -14,7 +14,7 @@ public class Statistique {
 
 	public Statistique(List<Double> _maList) {
 		this.maList = new ArrayList<>(_maList);
-		Collection.sort(this.maList);
+		Collections.sort(this.maList);
 	}
 
 	public double calculMoyenne() {
