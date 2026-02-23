@@ -28,7 +28,7 @@ public class App {
          System.out.println("Affichage des quartil  de salaire des metiers de l'informatique : ");
         //  objetStatistique.calculQuartile();
     double [] tabQuartil=new double[3];
-        tabQuartil=objetStatistique.calculQuartile();
+        tabQuartil=objetStatistique.calculQuartil();
         for (int i = 1; i < tabQuartil.length+1; i++) {
             
         

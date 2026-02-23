@@ -48,7 +48,7 @@ public class Statistique {
         }
         return myData.get(this.nbElement/2);
     }
-    public double [] calculquartil(){
+    public double [] calculQuartil(){
         double[] quartil=new double[3];
          if (nbElement % 4 == 0) {
    quartil[0] = myData.get((nbElement / 4));
