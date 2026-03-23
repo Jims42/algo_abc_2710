@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Grimoire Sanglant: Guide Nécro Hardcore 1-50</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Chosen Palette: Sanctuary Parchment
+           Background: Warm, paper-like light texture (#f5f0e6)
+           Text: Dark ink (#1c1917)
+           Accents: Blood Red (#991b1b), Legendary Gold (#d97706), Bone White (#e7e5e4)
+        */
+        :root {
+            --bg-paper: #f5f0e6;
+            --text-ink: #1c1917;
+            --accent-blood: #991b1b;
+            --accent-gold: #b45309;
+            --slot-bg: #e7e5e4;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            font-family: 'Lato', sans-serif;
+            background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        h1, h2, h3, .gothic-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Chart Container Styling - Mandatory Strictness */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Tailwind max-w-xl approx */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid #d6d3d1;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom UI Elements */
+        .slot-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .slot-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-color: var(--accent-gold);
+        }
+        .slot-card.active {
+            border-color: var(--accent-blood);
+            background-color: #fee2e2;
+            ring: 2px solid var(--accent-blood);
+        }
+
+        .blood-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #d6d3d1;
+            outline: none;
+            border-radius: 4px;
+        }
+        .blood-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-blood);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(153, 27, 27, 0.5);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e7e5e4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #78716c;
+            border-radius: 4px;
+        }
+    </style>
+    <!-- Application Structure Plan:
+         1. Header: Dramatic title, Level Tracker context.
+         2. Dashboard Intro: Brief explanation of the "Blood Surge" philosophy for Hardcore.
+         3. The Arsenal (Gear & Aspects): A visual grid of equipment slots. Clicking a slot reveals the specific Aspect required (answering the prompt's specific follow-up).
+         4. Ritual of Ascent (Skill Tree): An interactive slider/stepper to show skill points level by level.
+         5. Survival Matrix (Activity Chart): Scatter plot of Risk vs Reward.
+         6. Stats Radar: Visualizing the defensive priority.
+         7. Commandments: Checklist.
+    -->
+    <!-- Visualization & Content Choices:
+         - Gear Selection: Interactive Grid (HTML/JS) instead of SVG. Allows clicking "Chest" to see "Aspect of Disobedience".
+         - Skill Timeline: Range slider connected to a dynamic display card. Best for linear progression data.
+         - Activity Map: Chart.js Scatter Plot. X=Risk, Y=XP. Clear visual guidance for HC safety.
+         - Stat Priority: Chart.js Radar Chart. Comparing Softcore vs Hardcore stat weights.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-stone-900 text-stone-100 border-b-8 border-red-900 shadow-2xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-4xl font-bold tracking-widest uppercase text-red-600 gothic-font">Grimoire de Sang</h1>
+                <p class="text-xs md:text-sm text-stone-400 font-mono">Guide de Survie Nécroancien • Hardcore 1-50</p>
+            </div>
+            <div class="hidden md:block text-right">
+                <div class="text-xs text-stone-500 uppercase tracking-widest">Build Actif</div>
+                <div class="font-bold text-red-400">Afflux Sanguin (Blood Surge)</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto p-4 space-y-12">
+
+        <!-- Intro Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-800">
+            <h2 class="text-2xl gothic-font text-stone-800 mb-2">La Philosophie de la Non-Mort</h2>
+            <p class="text-stone-700 leading-relaxed">
+                Vous avez choisi la voie difficile. En Hardcore, la seule statistique qui compte est celle qui vous empêche de mourir. 
+                Ce guide interactif combine votre progression de compétences avec une gestion rigoureuse de votre équipement. 
+                Utilisez les outils ci-dessous pour planifier chaque étape de votre ascension jusqu'au niveau 50.
+            </p>
+        </section>
+
+        <!-- MODULE 1: THE ARSENAL (Gear & Aspects) -->
+        <!-- Context: Answering the specific user query about "Which aspect to equip". -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-end border-b border-stone-300 pb-2">
+                <div>
+                    <h2 class="text-3xl gothic-font text-stone-800">L'Armurerie Légendaire</h2>
+                    <p class="text-stone-600 text-sm max-w-2xl mt-2">
+                        Cliquez sur un emplacement d'équipement pour révéler l'<strong>Aspect Légendaire</strong> recommandé et les statistiques prioritaires.
+                        Ne négligez aucun emplacement : la synergie est votre bouclier.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Interactive Slot Grid -->
+                <div class="lg:col-span-1 grid grid-cols-2 gap-3">
+                    <!-- Helmet -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('helm')">
+                        <span class="text-2xl mb-1">🪖</span>
+                        <span class="font-bold text-stone-700 text-sm">Casque</span>
+                    </div>
+                    <!-- Chest -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('chest')">
+                        <span class="text-2xl mb-1">🥋</span>
+                        <span class="font-bold text-stone-700 text-sm">Plastron</span>
+                    </div>
+                    <!-- Gloves -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('gloves')">
+                        <span class="text-2xl mb-1">🧤</span>
+                        <span class="font-bold text-stone-700 text-sm">Gants</span>
+                    </div>
+                    <!-- Legs -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('legs')">
+                        <span class="text-2xl mb-1">👖</span>
+                        <span class="font-bold text-stone-700 text-sm">Jambières</span>
+                    </div>
+                    <!-- Boots -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('boots')">
+                        <span class="text-2xl mb-1">👢</span>
+                        <span class="font-bold text-stone-700 text-sm">Bottes</span>
+                    </div>
+                    <!-- Amulet -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('amulet')">
+                        <span class="text-2xl mb-1">🧿</span>
+                        <span class="font-bold text-stone-700 text-sm text-red-600">Amulette (+50%)</span>
+                    </div>
+                    <!-- Ring 1 -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24" onclick="selectSlot('ring')">
+                        <span class="text-2xl mb-1">💍</span>
+                        <span class="font-bold text-stone-700 text-sm">Anneaux</span>
+                    </div>
+                    <!-- Weapon -->
+                    <div class="slot-card bg-stone-100 border-2 border-stone-300 rounded-lg p-4 flex flex-col items-center justify-center text-center h-24 col-span-2 bg-red-50" onclick="selectSlot('weapon')">
+                        <span class="text-2xl mb-1">⚔️</span>
+                        <span class="font-bold text-stone-700 text-sm">Arme (2 Mains)</span>
+                    </div>
+                </div>
+
+                <!-- Detail Panel -->
+                <div class="lg:col-span-2 bg-white border border-stone-200 rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full -mr-16 -mt-16 z-0"></div>
+                    
+                    <div id="gear-detail-content" class="relative z-10 h-full flex flex-col justify-center">
+                        <div class="text-center text-stone-400 italic mt-10">
+                            Sélectionnez une pièce d'équipement à gauche pour voir l'Aspect recommandé.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: SKILL PROGRESSION -->
+        <section class="bg-stone-900 text-stone-200 rounded-2xl shadow-xl overflow-hidden">
+            <div class="p-6 border-b border-stone-700">
+                <h2 class="text-2xl gothic-font text-red-500">Rituel d'Ascension (Niveaux 1-50)</h2>
+                <p class="text-stone-400 text-sm mt-1">
+                    Chaque point compte. Ne gaspillez rien. Utilisez le curseur pour simuler votre montée en niveau et voir quel sort débloquer.
+                </p>
+            </div>
+            
+            <div class="p-6 md:p-8">
+                <!-- Slider Control -->
+                <div class="mb-8 bg-stone-800 p-4 rounded-lg border border-stone-600">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold text-stone-300 uppercase tracking-widest text-xs">Progression</span>
+                        <span class="text-3xl font-bold text-red-500" id="lvl-display">Niveau 2</span>
+                    </div>
+                    <input type="range" min="2" max="50" value="2" class="blood-slider" id="skill-slider">
+                    <div class="flex justify-between text-xs text-stone-500 mt-2 font-mono">
+                        <span>Début</span>
+                        <span>Décrépitude (13)</span>
+                        <span>Ultime (30)</span>
+                        <span>Tier 3 (50)</span>
+                    </div>
+                </div>
+
+                <!-- Skill Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Current Action -->
+                    <div class="bg-stone-800 border-l-4 border-red-600 p-5 rounded shadow-lg animate-fade-in" id="skill-card-container">
+                        <!-- Content injected via JS -->
+                    </div>
+
+                    <!-- Cumulative Passive Effects -->
+                    <div class="bg-stone-800 border border-stone-700 p-5 rounded">
+                        <h3 class="text-xs font-bold text-stone-500 uppercase mb-3">État du Build</h3>
+                        <ul class="space-y-2 text-sm" id="build-state-list">
+                            <li class="flex items-center text-stone-300"><span class="text-green-500 mr-2">✓</span> Hémorragie (Générateur)</li>
+                            <!-- Dynamic list -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: DATA VISUALIZATION (Charts) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Chart 1: Activity Risk Matrix -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-stone-200">
+                <div class="mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Matrice de Risque</h3>
+                    <p class="text-xs text-stone-500">
+                        Guide visuel des activités. <span class="text-green-600 font-bold">Vert = Sûr</span>, <span class="text-red-600 font-bold">Rouge = Danger</span>.
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Stat Priority Radar -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-stone-200">
+                <div class="mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Priorité des Statistiques</h3>
+                    <p class="text-xs text-stone-500">
+                        Comparaison entre un build Softcore (Gris) et ce que vous devez viser en Hardcore (Rouge).
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="statsChart"></canvas>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MODULE 4: COMMANDMENTS -->
+        <section class="bg-red-900 text-red-50 p-8 rounded-xl text-center shadow-inner">
+            <h2 class="text-3xl gothic-font mb-6 border-b border-red-800 inline-block pb-2">Les 5 Règles d'Or</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="bg-red-800 p-4 rounded-lg w-40 hover:bg-red-700 transition">
+                    <div class="text-2xl mb-2">🧪</div>
+                    <div class="font-bold text-sm">Élixirs Toujours</div>
+                </div>
+                <div class="bg-red-800 p-4 rounded-lg w-40 hover:bg-red-700 transition">
+                    <div class="text-2xl mb-2">📜</div>
+                    <div class="font-bold text-sm">Parchemin d'Évasion</div>
+                </div>
+                <div class="bg-red-800 p-4 rounded-lg w-40 hover:bg-red-700 transition">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <div class="font-bold text-sm">Armure Capée</div>
+                </div>
+                <div class="bg-red-800 p-4 rounded-lg w-40 hover:bg-red-700 transition">
+                    <div class="text-2xl mb-2">🚫</div>
+                    <div class="font-bold text-sm">Jamais AFK</div>
+                </div>
+                <div class="bg-red-800 p-4 rounded-lg w-40 hover:bg-red-700 transition">
+                    <div class="text-2xl mb-2">🏃</div>
+                    <div class="font-bold text-sm">Fuir = Vivre</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-950 text-stone-600 py-6 text-center text-xs mt-8">
+        <p>Généré par I.A. pour les héros de Sanctuaire. La mort est définitive, jouez prudemment.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA SETS ---
+
+        // 1. GEAR DATA (Text content for Armory)
+        const gearData = {
+            helm: {
+                title: "Casque",
+                aspect: "Aspect de Désobéissance (Disobedience)",
+                effect: "Vous gagnez de l'armure (%) lorsque vous infligez des dégâts. Cumulable.",
+                why: "INDISPENSABLE. C'est votre source principale d'armure pour atteindre la réduction de dégâts maximale physique.",
+                stats: ["Vie Max", "Réduction Temps de Recharge", "Armure Totale"],
+                source: "Donjon (Kehjistan) ou Loot"
+            },
+            chest: {
+                title: "Plastron",
+                aspect: "Aspect de la Moelle Durcie (Hardened Bones)",
+                effect: "Vous gagnez de la réduction de dégâts tant que vous avez 7 serviteurs actifs.",
+                why: "Le meilleur aspect défensif passif pour un build qui garde ses squelettes.",
+                stats: ["Vie Max", "Réduction Dégâts", "Armure Totale"],
+                source: "Loot aléatoire (Vagues Infernales)"
+            },
+            gloves: {
+                title: "Gants",
+                aspect: "Aspect des Vrilles Nécrotiques (Grasping Veins)",
+                effect: "Augmente les chances et dégâts Critiques après avoir lancé Vrilles.",
+                why: "Transforme votre contrôle de foule en un énorme boost de dégâts (Burst).",
+                stats: ["Vitesse d'Attaque", "Chance Critique", "Rangs Afflux Sanguin"],
+                source: "Donjon (Corrupted Grotto)"
+            },
+            legs: {
+                title: "Jambières",
+                aspect: "Aspect du Protecteur",
+                effect: "Blesser un élite confère une barrière.",
+                why: "Une seconde barre de vie automatique contre les ennemis dangereux.",
+                stats: ["Vie Max", "Armure", "Réduction Dégâts"],
+                source: "Donjon (Lost Archives)"
+            },
+            boots: {
+                title: "Bottes",
+                aspect: "Aspect de Brume Explosive (Explosive Mist)",
+                effect: "Brume de Sang ne réduit plus la vitesse et déclenche des Explosions Macabres.",
+                why: "Permet de s'enfuir tout en générant des cadavres et de l'essence.",
+                stats: ["Vitesse de Déplacement", "Essence par seconde"],
+                source: "Loot aléatoire"
+            },
+            amulet: {
+                title: "Amulette (Slot Puissant)",
+                aspect: "Aspect de Sang Bouillonnant (Blood-bathed)",
+                effect: "L'Afflux Sanguin se déclenche une 2ème fois (écho) avec moins de dégâts.",
+                why: "Sur l'amulette, le bonus est de 50%. C'est vital pour doubler vos procs de soins et d'accablement.",
+                stats: ["Vitesse de Déplacement", "Réduction Cooldown", "% Vie"],
+                source: "Donjon (Hoarfrost Demise)"
+            },
+            ring: {
+                title: "Anneaux",
+                aspect: "Aspect de l'Omphalos (Potent Blood) & Accablement",
+                effect: "Génère de l'essence quand vous soignez avec des orbes de sang.",
+                why: "Résout vos problèmes de mana. Sans essence, vous ne pouvez pas vous soigner via Afflux.",
+                stats: ["Vie Max", "Chance Critique", "Dégâts Accablement"],
+                source: "Donjon (Betrayer's Row)"
+            },
+            weapon: {
+                title: "Arme (Faux à 2 Mains)",
+                aspect: "Aspect de la Mort Intempestive (Untimely Death)",
+                effect: "Chaque % de vie soigné au-delà de 100% vous donne un bonus de dégâts d'Accablement.",
+                why: "Synergie parfaite avec Afflux Sanguin qui vous soigne constamment.",
+                stats: ["Dégâts Accablement", "Intelligence", "Vie Max"],
+                source: "Loot aléatoire"
+            }
+        };
+
+        // 2. SKILL DATA (Leveling Path)
+        // Simplified for interaction
+        const skillPath = [
+            { lvl: 2, name: "Hémorragie", type: "Base", desc: "Génère de l'essence." },
+            { lvl: 3, name: "Hémorragie Renforcée", type: "Base", desc: "AoE et vitesse." },
+            { lvl: 4, name: "Afflux Sanguin", type: "Core", desc: "VOTRE SORT PRINCIPAL. Dégâts + Soins." },
+            { lvl: 5, name: "Afflux Renforcé", type: "Core", desc: "Augmente les soins." },
+            { lvl: 6, name: "Afflux Paranormal", type: "Core", desc: "Bonus dégâts si en bonne santé." },
+            { lvl: 7, name: "Hémorragie Acolyte", type: "Base", desc: "Vitesse d'attaque bonus." },
+            { lvl: 8, name: "Brume de Sang", type: "Defensive", desc: "IMMUNITÉ. Votre bouton 'Oh non !'." },
+            { lvl: 12, name: "Explosion Macabre", type: "Corpse", desc: "Pour générer de l'essence ou nettoyer." },
+            { lvl: 13, name: "Décrépitude", type: "Curse", desc: "Ralentit et réduit les dégâts ennemis. Vital." },
+            { lvl: 20, name: "Passif: Équilibre Imparfait", type: "Passive", desc: "Plus de dégâts, coûte plus d'essence." },
+            { lvl: 24, name: "Vrilles Nécrotiques", type: "Corpse", desc: "Regroupe les ennemis pour l'Afflux." },
+            { lvl: 27, name: "Passif: Carapace Nécrotique", type: "Passive", desc: "Fortification quand un cadavre est créé. LE passif HC." },
+            { lvl: 30, name: "Tempête d'Os", type: "Ultime", desc: "Bouclier tournoyant + Dégâts." },
+            { lvl: 35, name: "Passif: Marée de Sang", type: "Passive", desc: "Boost dégâts d'Accablement." },
+            { lvl: 45, name: "Passif: Meneur Inspirant", type: "Passive", desc: "Vitesse d'attaque si serviteurs en vie." },
+            { lvl: 50, name: "Vigueur de Rathma", type: "Key Passive", desc: "Garantit un Accablement toutes les 12s." }
+        ];
+
+        // --- INTERACTION LOGIC ---
+
+        // 1. Select Gear Slot
+        function selectSlot(slotKey) {
+            // UI Update
+            document.querySelectorAll('.slot-card').forEach(el => el.classList.remove('active'));
+            // Find clicked element wrapper (closest slot-card) and add active
+            // Note: In inline onclick, 'this' isn't passed automatically like addEventListener, 
+            // but we can simulate logic or just rely on finding the specific card via other means if needed.
+            // Simplified: Re-query by the onclick attribute in a real app, but here we just update content.
+            
+            // Content Update
+            const data = gearData[slotKey];
+            const container = document.getElementById('gear-detail-content');
+            
+            container.innerHTML = `
+                <div class="animate-fade-in text-left">
+                    <div class="flex justify-between items-start border-b border-stone-200 pb-2 mb-4">
+                        <h3 class="text-2xl font-bold text-stone-800">${data.title}</h3>
+                        <span class="bg-stone-200 text-stone-600 text-xs px-2 py-1 rounded font-bold uppercase">Loot: ${data.source}</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm uppercase tracking-widest text-red-600 font-bold mb-1">Aspect Recommandé</h4>
+                        <div class="bg-red-50 border border-red-200 p-3 rounded-lg">
+                            <p class="font-bold text-stone-900 text-lg">${data.aspect}</p>
+                            <p class="text-stone-600 text-sm italic mt-1">"${data.effect}"</p>
+                        </div>
+                        <p class="mt-2 text-sm text-stone-700"><strong>Pourquoi ?</strong> ${data.why}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm uppercase tracking-widest text-stone-500 font-bold mb-2">Stats Prioritaires</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${data.stats.map(s => `<span class="px-3 py-1 bg-stone-100 text-stone-700 text-sm rounded border border-stone-300">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. Skill Slider Logic
+        const slider = document.getElementById('skill-slider');
+        const lvlDisplay = document.getElementById('lvl-display');
+        const cardContainer = document.getElementById('skill-card-container');
+        const buildList = document.getElementById('build-state-list');
+
+        function updateSkills(lvl) {
+            lvlDisplay.innerText = `Niveau ${lvl}`;
+            
+            // Find most recent skill instruction
+            let currentInstruction = skillPath[0];
+            for (let i = 0; i < skillPath.length; i++) {
+                if (skillPath[i].lvl <= lvl) {
+                    currentInstruction = skillPath[i];
+                } else {
+                    break;
+                }
+            }
+
+            // Update Card
+            cardContainer.innerHTML = `
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-stone-400 uppercase tracking-widest">${currentInstruction.type}</span>
+                    <span class="bg-stone-900 border border-red-900 text-red-500 text-xs px-2 py-1 rounded">Débloqué au lvl ${currentInstruction.lvl}</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">${currentInstruction.name}</h3>
+                <p class="text-stone-300 text-sm">${currentInstruction.desc}</p>
+            `;
+
+            // Update List (Show last 3 unlocked)
+            const unlocked = skillPath.filter(s => s.lvl <= lvl);
+            const recent = unlocked.slice(-4).reverse(); // Show last 4
+            
+            buildList.innerHTML = recent.map(s => `
+                <li class="flex items-center text-stone-300 border-b border-stone-700 py-1 last:border-0">
+                    <span class="text-green-500 mr-2 text-xs">●</span> 
+                    <span class="flex-1">${s.name}</span>
+                    <span class="text-stone-500 text-xs">Lvl ${s.lvl}</span>
+                </li>
+            `).join('');
+        }
+
+        slider.addEventListener('input', (e) => {
+            updateSkills(e.target.value);
+        });
+
+        // Initialize Skill view
+        updateSkills(2);
+        // Initialize Gear view
+        selectSlot('helm'); // Default selection
+
+        // 3. CHARTS INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ACTIVITY CHART
+            const ctxActivity = document.getElementById('activityChart').getContext('2d');
+            new Chart(ctxActivity, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Activités',
+                        data: [
+                            {x: 1, y: 3, label: 'Caves'},
+                            {x: 2, y: 5, label: 'Événements'},
+                            {x: 3, y: 7, label: 'Arbre Murmures'},
+                            {x: 8, y: 9, label: 'Vagues Infernales'},
+                            {x: 9, y: 2, label: 'Le Boucher (Fuyez !)'},
+                            {x: 4, y: 6, label: 'Donjons (Aspects)'},
+                            {x: 5, y: 8, label: 'Légion'}
+                        ],
+                        backgroundColor: (ctx) => {
+                            const x = ctx.raw?.x;
+                            return x > 6 ? '#ef4444' : '#22c55e';
+                        },
+                        pointRadius: 8
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: {display: true, text: 'Risque (Mort)'}, min: 0, max: 10 },
+                        y: { title: {display: true, text: 'Récompense (XP)'}, min: 0, max: 10 }
+                    },
+                    plugins: {
+                        tooltip: { callbacks: { label: (ctx) => ctx.raw.label } },
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // STATS CHART
+            const ctxStats = document.getElementById('statsChart').getContext('2d');
+            new Chart(ctxStats, {
+                type: 'radar',
+                data: {
+                    labels: ['Dégâts', 'Armure', 'Vie Max', 'Résistances', 'Vitesse'],
+                    datasets: [
+                        {
+                            label: 'Hardcore (Cible)',
+                            data: [50, 90, 100, 80, 60],
+                            borderColor: '#991b1b',
+                            backgroundColor: 'rgba(153, 27, 27, 0.2)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Softcore (Typique)',
+                            data: [100, 40, 50, 30, 90],
+                            borderColor: '#78716c',
+                            backgroundColor: 'rgba(120, 113, 108, 0.1)',
+                            borderDash: [5, 5],
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: { r: { suggestedMin: 0, suggestedMax: 100 } }
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
