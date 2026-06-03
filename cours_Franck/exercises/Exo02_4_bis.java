@@ -1,3 +1,5 @@
+// PREMIERE VERSION
+
 import java.util.Scanner;
 
 public class Exo02_4_bis {
@@ -29,3 +31,39 @@ public class Exo02_4_bis {
 
     }
 }
+
+
+// DEUXIEME VERSION
+
+import java.util.Scanner;
+
+public class Exo02_4_bis {
+    public static void main(String[] args) {
+        
+        Scanner clavier = new Scanner(System.in);
+
+        int a;
+        boolean bis=false;
+
+        System.out.print("Indiquez l'année :");a=clavier.nextInt();
+
+        if (a%4==0) bis=true;
+        else if (a%4!=0){System.out.println("l'année est non bissextile");}
+        if (bis) {
+            
+        
+                if (a%100==0 && a%400!=0) {System.out.println("année est non bissextile");}
+                else  {System.out.println("année bissextile");}
+        }    
+        
+    
+
+       
+       
+        clavier.close();
+
+
+    }
+
+
+    }
